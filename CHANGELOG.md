@@ -2,6 +2,17 @@
 
 ## Unreleased
 
+## 1.2.1 - 2026-07-30
+
+- Added a standalone locale resolver based on existing translated ISPConfig
+  shell labels instead of the historically fixed HTML language attribute.
+- Unified German and English runtime copy across dashboard states, table
+  counts, filters, pagination, forms and accessible theme controls.
+- Preserved the independent dark-first glass presentation.
+- Rebuilt and verified the standalone package with 301 signed files.
+- Passed functional parity, package, neutrality, offline installation,
+  upgrade and rollback validation.
+
 ## 1.2.0 - 2026-07-30
 
 - Promoted the fully validated LIQUID release candidate to stable.
