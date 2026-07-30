@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang='en'>
 <head>
-  <style id='workbench-branding-vars'>:root { --wb-accent: #6c63ff; --wb-action: #6c63ff; --wb-dark-logo: url('/themes/liquid/assets/images/ispconfig-workbench-logo-dark.svg'); } .wb-skip-link:focus, .wb-skip-link:focus-visible { transform: none !important; }</style>
+  <style id='workbench-branding-vars'>:root { --wb-accent: #6c63ff; --wb-action: #6c63ff; --wb-dark-logo: url('/themes/liquid/assets/images/ispconfig-workbench-logo-dark.svg'); } :root { --wb-accent: <tmpl_var name='workbench_accent_color'>; --wb-action: <tmpl_var name='workbench_accent_color'>; --wb-dark-logo: url('<tmpl_var name="workbench_dark_logo_url">'); }</style>
   <meta charset='utf-8' />
 
   <title><tmpl_var name="company_name"><tmpl_var name="app_title"></title>
@@ -15,11 +15,11 @@
  <link rel='icon' type='image/png' sizes='32x32' href='/themes/liquid/assets/images/ispconfig-workbench-favicon.svg'>
  <link rel='icon' type='image/png' sizes='16x16' href='/themes/liquid/assets/images/ispconfig-workbench-favicon.svg'>
  <link rel='manifest' href='/themes/liquid/assets/favicon/site.webmanifest'>
- <link rel='mask-icon' href='/themes/liquid/assets/images/ispconfig-workbench-favicon.svg' color='#6c63ff'>
+ <link rel='mask-icon' href='/themes/liquid/assets/images/ispconfig-workbench-favicon.svg' color='<tmpl_var name="workbench_accent_color">'>
  <link rel='shortcut icon' href='/themes/liquid/assets/images/ispconfig-workbench-favicon.svg'>
- <meta name='msapplication-TileColor' content='#6c63ff'>
+ <meta name='msapplication-TileColor' content='<tmpl_var name="workbench_accent_color">'>
  <meta name='msapplication-config' content='/themes/liquid/assets/favicon/browserconfig.xml'>
- <meta name='theme-color' content='#6c63ff'>
+ <meta name='theme-color' content='<tmpl_var name="workbench_accent_color">'>
  <script src='../themes/liquid/assets/javascripts/workbench-early.js?ver=1'></script>
 
   <link rel='stylesheet' href='../themes/liquid/assets/stylesheets/workbench.css?ver=146' />
@@ -61,7 +61,7 @@
     <div class="wb-login-disclaimer"><small><tmpl_var name="custom_login"></small></div>
   </section>
 </main>
-  <script src='../themes/liquid/assets/javascripts/workbench-feedback.js?ver=4'></script>
+  <script src='../themes/liquid/assets/javascripts/workbench-feedback.js?ver=5'></script>
   <script src='../themes/liquid/assets/javascripts/workbench-login.js?ver=8'></script>
   <script src='../themes/liquid/assets/javascripts/workbench-theme.js?ver=14'></script>
 </body>
