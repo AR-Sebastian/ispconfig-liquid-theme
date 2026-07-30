@@ -2,15 +2,15 @@
     "schemaVersion":  1,
     "id":  "com.ispconfig.liquid.theme",
     "name":  "ISPConfig LIQUID",
-    "version":  "1.1.2",
+    "version":  "1.1.3",
     "stage":  "evaluation",
     "releaseDate":  "2026-07-30",
     "compatibility":  {
-                          "ispconfig":  "3.3dev",
-                          "preview":  "Development-line evaluation only; stable 3.3.1p1 validation pending"
+                          "ispconfig":  "3.3.1p1",
+                          "preview":  "Release candidate under stable 3.3.1p1 matrix validation"
                       },
     "packageDirectory":  "liquid",
-    "releaseTag":  "v1.1.2",
+    "releaseTag":  "v1.1.3",
     "design":  {
                    "family":  "liquid-glass",
                    "defaultMode":  "dark",
