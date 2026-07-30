@@ -6,10 +6,17 @@ LIQUID ist ein Dark-First-Liquid-Glass-Theme für ISPConfig. Es verbindet eine
 konzentrierte Administrationsoberfläche mit geschichteten Flächen, dezenter
 Tiefe, leuchtenden Statushinweisen und einem responsiven Komponentensystem.
 
-![LIQUID-Dashboard aus dem installierten Paket v1.1.2](docs/images/dashboard-runtime-v1.1.2.png)
+![LIQUID-Dashboard des installierten v1.1.3-Kandidaten](docs/images/dashboard-runtime-v1.1.3.png)
 
-Die Abbildung ist eine echte Laufzeitaufnahme des veröffentlichten Pakets
-`v1.1.2` auf Ubuntu 24.04 mit Nginx. Sie ist kein Konzept-Rendering.
+Die Abbildung ist eine echte Laufzeitaufnahme des installierten
+`v1.1.3`-Kandidaten auf ISPConfig 3.3.1p1. Sie ist kein Konzept-Rendering.
+
+Weitere echte Laufzeitaufnahmen:
+
+- [Login](docs/images/login-runtime-v1.1.3.png)
+- [Tabelle mit geöffneten Filtern](docs/images/table-filters-runtime-v1.1.3.png)
+- [Formular](docs/images/form-runtime-v1.1.3.png)
+- [Mobile Navigation](docs/images/mobile-navigation-runtime-v1.1.3.png)
 
 ### Warum LIQUID entstanden ist
 
@@ -79,10 +86,17 @@ LIQUID is a dark-first liquid-glass theme for ISPConfig. It combines a focused
 administration layout with layered surfaces, subtle depth, luminous status
 cues and a responsive component system.
 
-![LIQUID dashboard from the installed v1.1.2 package](docs/images/dashboard-runtime-v1.1.2.png)
+![LIQUID dashboard from the installed v1.1.3 candidate](docs/images/dashboard-runtime-v1.1.3.png)
 
-The image is an actual runtime capture of the published `v1.1.2` package on
-Ubuntu 24.04 with Nginx. It is not a concept rendering.
+The image is an actual runtime capture of the installed `v1.1.3` candidate on
+ISPConfig 3.3.1p1. It is not a concept rendering.
+
+More actual runtime captures:
+
+- [Login](docs/images/login-runtime-v1.1.3.png)
+- [Table with expanded filters](docs/images/table-filters-runtime-v1.1.3.png)
+- [Form](docs/images/form-runtime-v1.1.3.png)
+- [Mobile navigation](docs/images/mobile-navigation-runtime-v1.1.3.png)
 
 ### Why LIQUID was created
 
