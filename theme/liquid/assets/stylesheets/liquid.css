@@ -824,6 +824,31 @@ body.wb-app-navigation-enabled .wb-mobile-navigation .wb-app-navigation__footer 
   color-scheme: dark;
 }
 
+/* WP-1139: LIQUID follows the shared compact rail without returning to
+ * oversized glass cards. */
+body.wb-app-navigation-enabled .wb-mobile-navigation__module {
+  min-height: 2.75rem;
+  border-radius: 0.75rem !important;
+}
+
+body.wb-app-navigation-enabled .wb-mobile-navigation__secondary {
+  margin-block: 0.08rem 0.45rem !important;
+  padding-block: 0.3rem 0.45rem !important;
+}
+
+body.wb-app-navigation-enabled .wb-mobile-navigation__quick-action {
+  inline-size: 2.15rem !important;
+  min-inline-size: 2.15rem !important;
+  block-size: 2.15rem !important;
+  min-block-size: 2.15rem !important;
+}
+
+@media (max-width: 41.875rem) {
+  body.wb-app-navigation-enabled .wb-mobile-navigation__module {
+    min-height: 3rem;
+  }
+}
+
 /* V1.3: the fixed navigation footer remains a dark product surface even when
  * a long form switches document-level appearance tokens during capture or
  * theme synchronization. Keep the icon contrast independent from page cards. */
