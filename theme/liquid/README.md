@@ -1,10 +1,10 @@
-# ISPConfig LIQUID Theme 1.2.2
+# ISPConfig LIQUID Theme 1.2.3
 
 LIQUID is the expressive premium theme for ISPConfig. It combines a dark-first
 navy canvas, restrained violet and cyan light, translucent surfaces, clear
 hierarchy and accessible contrast.
 
-Version 1.2.2 closes the product composition across authentication, dashboard,
+Version 1.2.3 closes the product composition across authentication, dashboard,
 global search, dialogs, navigation, tables, forms, monitoring, the retained
 Extension Installer and the optional Workbench Billing product. Light and dark
 appearances now have separate contrast-safe navigation contracts.

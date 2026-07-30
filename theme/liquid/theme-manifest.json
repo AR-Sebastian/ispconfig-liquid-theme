@@ -2,15 +2,15 @@
     "schemaVersion":  1,
     "id":  "com.ispconfig.liquid.theme",
     "name":  "ISPConfig LIQUID",
-    "version":  "1.2.2",
+    "version":  "1.2.3",
     "stage":  "stable",
     "releaseDate":  "2026-07-30",
     "compatibility":  {
                           "ispconfig":  "3.3.1p1",
-                          "preview":  "Ubuntu 22.04/24.04 and Debian 12/13, Apache and Nginx laboratories"
+                          "preview":  "Ubuntu 22.04/24.04 and Debian 12/13 with Apache and Nginx"
                       },
     "packageDirectory":  "liquid",
-    "releaseTag":  "v1.2.2",
+    "releaseTag":  "v1.2.3",
     "design":  {
                    "family":  "liquid-glass",
                    "defaultMode":  "dark",
@@ -30,6 +30,9 @@
                              "tools",
                              "admin"
                          ],
+    "optionalSupportedModules":  [
+                                      "billing"
+                                  ],
     "retiredThemeSurfaces":  [
                                  "openvz",
                                  "aps-installer",
@@ -47,7 +50,8 @@
                        "themeOnly":  true,
                        "coreReimplementation":  false,
                        "productionDeploymentApproved":  true,
-                       "nextThemeDependency":  false
+                       "nextThemeDependency":  false,
+                       "defaultThemeFallbackRequired":  true
                    },
     "distributionMode":  "standalone-theme",
     "optionalIntegration":  {
