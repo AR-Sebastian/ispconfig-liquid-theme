@@ -1,0 +1,1993 @@
+/*
+ * ISPConfig LIQUID 1.0
+ * Standalone visual layer over the proven Workbench UI engine.
+ * Accent is selection/identity; semantic states retain dedicated colors.
+ */
+:root {
+  color-scheme: light;
+  --liquid-violet: #6c63ff;
+  --liquid-cyan: #00d4ff;
+  --liquid-canvas: #eef2ff;
+  --liquid-canvas-deep: #e8edfb;
+  --liquid-glass: rgba(255, 255, 255, .72);
+  --liquid-glass-strong: rgba(255, 255, 255, .9);
+  --liquid-border: rgba(83, 93, 145, .18);
+  --liquid-text: #111a35;
+  --liquid-muted: #55617c;
+  --liquid-eyebrow: #5c54d6;
+  --liquid-shadow: 0 18px 55px rgba(45, 52, 101, .12);
+  --liquid-glow: 0 0 38px color-mix(in srgb, var(--wb-accent, var(--liquid-violet)) 19%, transparent);
+  --liquid-blur: 22px;
+  --wb-accent: var(--liquid-violet);
+}
+
+:root[data-wb-theme="dark"] {
+  color-scheme: dark;
+  --liquid-canvas: #060a19;
+  --liquid-canvas-deep: #0a1028;
+  --liquid-glass: rgba(18, 25, 57, .68);
+  --liquid-glass-strong: rgba(15, 22, 51, .9);
+  --liquid-border: rgba(142, 153, 226, .2);
+  --liquid-text: #f1f4ff;
+  --liquid-muted: #a8b1ce;
+  --liquid-eyebrow: #aaa6ff;
+  --liquid-shadow: 0 24px 70px rgba(0, 0, 0, .34);
+  --liquid-glow: 0 0 46px color-mix(in srgb, var(--wb-accent, var(--liquid-violet)) 25%, transparent);
+}
+
+html,
+body {
+  background: var(--liquid-canvas) !important;
+  color: var(--liquid-text);
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  content: "";
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 17% 8%, color-mix(in srgb, var(--wb-accent) 20%, transparent), transparent 31rem),
+    radial-gradient(circle at 84% 20%, rgba(0, 212, 255, .13), transparent 28rem),
+    linear-gradient(145deg, var(--liquid-canvas), var(--liquid-canvas-deep));
+}
+
+body::after {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  content: "";
+  pointer-events: none;
+  opacity: .24;
+  background-image: linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: linear-gradient(to bottom, black, transparent 75%);
+}
+
+body.wb-app-navigation-enabled .wb-app-navigation,
+body.wb-app-navigation-enabled #main-navigation,
+.wb-mobile-navigation,
+.wb-mobile-navigation__content {
+  background:
+    linear-gradient(165deg, color-mix(in srgb, var(--liquid-glass-strong) 92%, var(--wb-accent) 8%), var(--liquid-glass-strong))
+    var(--liquid-canvas-deep) !important;
+  border-color: var(--liquid-border) !important;
+  box-shadow: 20px 0 60px rgba(0, 0, 0, .2);
+  backdrop-filter: blur(28px) saturate(145%);
+}
+
+.wb-app-navigation__brand,
+.wb-app-navigation__footer {
+  border-color: var(--liquid-border) !important;
+  background: transparent !important;
+}
+
+.wb-app-navigation__item,
+.wb-app-navigation__item a,
+#main-navigation a,
+.wb-app-navigation__user,
+.wb-source-navigation__item .title {
+  color: var(--liquid-muted) !important;
+}
+
+.wb-page-header__eyebrow,
+.wb-module-eyebrow,
+.wb-statistics-hero__eyebrow,
+[class^="wb-"][class*="__eyebrow"] {
+  color: var(--liquid-eyebrow) !important;
+}
+
+.wb-submit-feedback__label {
+  color: var(--liquid-eyebrow) !important;
+}
+
+.wb-app-navigation__user strong {
+  color: var(--liquid-text) !important;
+}
+
+.wb-app-navigation__user small {
+  color: var(--liquid-muted) !important;
+}
+
+#sidebar strong,
+.wb-mobile-navigation strong,
+.wb-app-navigation strong {
+  color: var(--liquid-muted) !important;
+}
+
+#sidebar :is(.active, .is-active, [aria-current="page"]) strong,
+.wb-mobile-navigation :is(.active, .is-active, [aria-current="page"]) strong,
+.wb-app-navigation :is(.active, .is-active, [aria-current="page"]) strong {
+  color: var(--liquid-text) !important;
+}
+
+.wb-app-navigation__logout {
+  color: var(--liquid-text) !important;
+  background: color-mix(in srgb, var(--liquid-glass-strong) 74%, transparent) !important;
+}
+
+.wb-app-navigation__item:hover,
+.wb-app-navigation__item:focus-within,
+.wb-app-navigation__item.is-active,
+.wb-app-navigation__item.active,
+#main-navigation a:hover,
+#main-navigation .active > a,
+.wb-source-navigation__item:is(.active, .is-active) .title {
+  color: var(--liquid-text) !important;
+  background: linear-gradient(100deg,
+    color-mix(in srgb, var(--wb-accent) 20%, transparent),
+    color-mix(in srgb, var(--liquid-cyan) 8%, transparent)) !important;
+  border-color: color-mix(in srgb, var(--wb-accent) 38%, transparent) !important;
+  box-shadow: inset 3px 0 var(--wb-accent), 0 8px 24px color-mix(in srgb, var(--wb-accent) 12%, transparent);
+}
+
+.wb-app-header,
+#pageContent > .wb-page-header,
+.wb-global-search,
+.wb-global-search__surface {
+  background: color-mix(in srgb, var(--liquid-glass) 91%, transparent) !important;
+  border-color: var(--liquid-border) !important;
+  backdrop-filter: blur(var(--liquid-blur)) saturate(135%);
+}
+
+.wb-global-search__field,
+.wb-global-search__input,
+.wb-global-search input {
+  color: var(--liquid-text) !important;
+  background: color-mix(in srgb, var(--liquid-glass-strong) 74%, transparent) !important;
+  border-color: var(--liquid-border) !important;
+}
+
+#pageContent,
+#pageContent p,
+#pageContent label,
+#pageContent h1,
+#pageContent h2,
+#pageContent h3,
+#pageContent h4,
+#pageContent .panel-title,
+#pageContent .card-title {
+  color: var(--liquid-text);
+}
+
+#pageContent .text-muted,
+#pageContent small,
+#pageContent .help-block,
+#pageContent .form-text {
+  color: var(--liquid-muted) !important;
+}
+
+:root[data-wb-theme="dark"] #pageContent :where(.nav-tabs, .wb-form-tabs) > .active > a,
+:root[data-wb-theme="dark"] #pageContent :where(.nav-tabs, .wb-form-tabs) a[aria-selected="true"] {
+  color: #aaa6ff !important;
+}
+
+.wb-dashlet,
+.wb-table-workspace,
+.wb-form-workspace,
+.wb-list-workspace,
+.wb-content-surface,
+.wb-dialog__surface,
+#pageContent .panel,
+#pageContent .card,
+#pageContent .modal-content,
+#pageContent .well {
+  background:
+    linear-gradient(145deg,
+      color-mix(in srgb, var(--liquid-glass-strong) 76%, transparent),
+      color-mix(in srgb, var(--liquid-glass) 93%, transparent)) !important;
+  border: 1px solid var(--liquid-border) !important;
+  box-shadow: var(--liquid-shadow), inset 0 1px rgba(255,255,255,.07) !important;
+  backdrop-filter: blur(var(--liquid-blur)) saturate(138%);
+}
+
+.wb-dashlet:hover {
+  border-color: color-mix(in srgb, var(--wb-accent) 36%, var(--liquid-border)) !important;
+  box-shadow: var(--liquid-shadow), var(--liquid-glow) !important;
+}
+
+#pageContent table,
+#pageContent .table,
+.wb-table-workspace table {
+  color: var(--liquid-text) !important;
+  background: transparent !important;
+}
+
+#pageContent thead,
+#pageContent .table > thead > tr > th {
+  color: color-mix(in srgb, var(--liquid-text) 88%, var(--wb-accent)) !important;
+  background: color-mix(in srgb, var(--liquid-glass-strong) 72%, transparent) !important;
+  border-color: var(--liquid-border) !important;
+}
+
+#pageContent td,
+#pageContent th,
+#pageContent .table > tbody > tr > td {
+  border-color: var(--liquid-border) !important;
+}
+
+#pageContent tbody tr:hover {
+  background: color-mix(in srgb, var(--wb-accent) 8%, transparent) !important;
+}
+
+#pageContent input,
+#pageContent select,
+#pageContent textarea,
+#pageContent .form-control,
+#pageContent .select2-selection,
+.wb-dialog__surface input,
+.wb-dialog__surface select,
+.wb-dialog__surface textarea {
+  color: var(--liquid-text) !important;
+  background: color-mix(in srgb, var(--liquid-glass-strong) 74%, transparent) !important;
+  border-color: var(--liquid-border) !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.04);
+}
+
+#pageContent input:focus,
+#pageContent select:focus,
+#pageContent textarea:focus,
+#pageContent .form-control:focus {
+  border-color: color-mix(in srgb, var(--wb-accent) 65%, white) !important;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--wb-accent) 18%, transparent), var(--liquid-glow) !important;
+}
+
+.wb-action-control,
+#pageContent .btn-primary,
+#pageContent .btn-success:not(.wb-semantic-success) {
+  color: var(--wb-action-contrast, #fff) !important;
+  border-color: color-mix(in srgb, var(--wb-action) 75%, white) !important;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--wb-action) 82%, white), var(--wb-action)) !important;
+  box-shadow: 0 10px 28px color-mix(in srgb, var(--wb-action) 27%, transparent), inset 0 1px rgba(255,255,255,.28) !important;
+}
+
+.wb-action-control:hover,
+#pageContent .btn-primary:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.08);
+}
+
+#pageContent .btn-default,
+#pageContent .btn-secondary,
+.wb-theme-toggle,
+.wb-navigation-toggle {
+  color: var(--liquid-text) !important;
+  border-color: var(--liquid-border) !important;
+  background: color-mix(in srgb, var(--liquid-glass-strong) 72%, transparent) !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.08);
+}
+
+.wb-pagination,
+.wb-table-toolbar,
+.wb-list-toolbar,
+.wb-filter-panel,
+.wb-unsaved-status {
+  color: var(--liquid-muted) !important;
+  border-color: var(--liquid-border) !important;
+  background: color-mix(in srgb, var(--liquid-glass) 82%, transparent) !important;
+  backdrop-filter: blur(16px);
+}
+
+.wb-themed-chart {
+  filter: saturate(1.15) drop-shadow(0 8px 18px color-mix(in srgb, var(--wb-accent) 15%, transparent));
+}
+
+/* Product cockpit: the dashboard is the visual signature of LIQUID. */
+body.wb-dashboard-page #pageContent.wb-dashboard-layout {
+  gap: 18px !important;
+  background:
+    radial-gradient(circle at 12% 0, color-mix(in srgb, var(--wb-accent) 12%, transparent), transparent 32rem),
+    radial-gradient(circle at 88% 14%, rgba(0, 212, 255, .08), transparent 26rem) !important;
+}
+
+body.wb-dashboard-page #pageContent.wb-dashboard-layout > .wb-dashboard-hero {
+  position: relative;
+  min-height: 190px;
+  padding: clamp(28px, 4vw, 50px) !important;
+  border: 1px solid color-mix(in srgb, var(--wb-accent) 32%, var(--liquid-border)) !important;
+  border-radius: 24px !important;
+  background:
+    radial-gradient(circle at 78% 0, rgba(0, 212, 255, .18), transparent 22rem),
+    radial-gradient(circle at 25% 120%, color-mix(in srgb, var(--wb-accent) 26%, transparent), transparent 28rem),
+    linear-gradient(135deg, rgba(22, 30, 70, .9), rgba(10, 15, 38, .86))
+    #0d1433 !important;
+  box-shadow: var(--liquid-shadow), var(--liquid-glow), inset 0 1px rgba(255,255,255,.1) !important;
+  overflow: hidden;
+}
+
+body.wb-dashboard-page #pageContent.wb-dashboard-layout > .wb-dashboard-hero::after {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  right: -110px;
+  bottom: -210px;
+  border: 1px solid rgba(183, 190, 255, .16);
+  border-radius: 50%;
+  box-shadow: 0 0 0 52px rgba(108, 99, 255, .035), 0 0 0 104px rgba(0, 212, 255, .025);
+  content: "";
+  pointer-events: none;
+}
+
+body.wb-dashboard-page #pageContent.wb-dashboard-layout > .wb-dashboard-hero,
+body.wb-dashboard-page #pageContent.wb-dashboard-layout > .wb-dashboard-hero :where(h1, h2, h3, p, small) {
+  color: #f4f6ff !important;
+}
+
+body.wb-dashboard-page #pageContent.wb-dashboard-layout > .wb-dashboard-hero
+  :where(.wb-page-header__eyebrow, .wb-dashboard-hero__eyebrow) {
+  color: #aaa6ff !important;
+}
+
+body.wb-dashboard-page #pageContent.wb-dashboard-layout .wb-dashboard-overview__stat {
+  position: relative;
+  border: 1px solid var(--liquid-border) !important;
+  border-radius: 18px !important;
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--liquid-glass-strong) 75%, transparent), var(--liquid-glass)) !important;
+  box-shadow: 0 14px 38px rgba(5, 9, 27, .16), inset 0 1px rgba(255,255,255,.08) !important;
+  backdrop-filter: blur(20px) saturate(140%);
+  overflow: hidden;
+}
+
+body.wb-dashboard-page #pageContent.wb-dashboard-layout .wb-dashboard-overview__stat::after {
+  position: absolute;
+  inset: auto 14px 10px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--wb-accent), var(--liquid-cyan), transparent);
+  content: "";
+  opacity: .55;
+}
+
+body.wb-dashboard-page #pageContent.wb-dashboard-layout > .wb-dashlet {
+  border-radius: 20px !important;
+}
+
+body.wb-dashboard-page #pageContent.wb-dashboard-layout > .wb-dashlet[data-wb-dashboard-cockpit]::before,
+body.wb-dashboard-page #pageContent.wb-dashboard-layout > .wb-dashlet[data-wb-atomic-source]::before {
+  height: 2px !important;
+  background: linear-gradient(90deg,
+    color-mix(in srgb, var(--wb-dashlet-accent, var(--wb-accent)) 86%, white),
+    color-mix(in srgb, var(--liquid-cyan) 75%, transparent),
+    transparent 82%) !important;
+  opacity: .65 !important;
+}
+
+body.wb-dashboard-page .wb-module-launcher,
+body.wb-dashboard-page .wb-dashboard-metric-card {
+  border-color: var(--liquid-border) !important;
+  background:
+    radial-gradient(circle at 100% 0, color-mix(in srgb, var(--wb-dashlet-accent, var(--wb-accent)) 13%, transparent), transparent 44%),
+    color-mix(in srgb, var(--liquid-glass-strong) 68%, transparent) !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.07) !important;
+}
+
+body.wb-dashboard-page .wb-module-launcher__action {
+  border-color: color-mix(in srgb, var(--wb-dashlet-accent, var(--wb-accent)) 38%, var(--liquid-border)) !important;
+  background: color-mix(in srgb, var(--wb-dashlet-accent, var(--wb-accent)) 12%, var(--liquid-glass)) !important;
+  box-shadow: 0 8px 22px color-mix(in srgb, var(--wb-dashlet-accent, var(--wb-accent)) 16%, transparent);
+}
+
+body.wb-dashboard-page .wb-dashboard-toolbar {
+  border: 1px solid var(--liquid-border) !important;
+  border-radius: 18px !important;
+  background: color-mix(in srgb, var(--liquid-glass) 84%, transparent) !important;
+  box-shadow: 0 12px 32px rgba(7, 11, 32, .12);
+  backdrop-filter: blur(18px);
+}
+
+/* Forms and lists use one continuous glass workspace instead of stacked boxes. */
+body.wb-list-page #pageContent > :where(.wb-list-command-bar, .wb-table-workspace, .wb-list-footer),
+body.wb-form-page #pageContent > :where(.wb-form-workspace, #pageForm) {
+  border-color: var(--liquid-border) !important;
+}
+
+body.wb-list-page .wb-data-table > tbody > tr > :where(th, td) {
+  background: color-mix(in srgb, var(--liquid-glass) 38%, transparent) !important;
+}
+
+body.wb-list-page .wb-data-table > tbody > tr:nth-child(even) > :where(th, td) {
+  background: color-mix(in srgb, var(--liquid-glass-strong) 34%, transparent) !important;
+}
+
+body.wb-form-page #pageForm.wb-modern-form .content-tab-wrapper > .nav-tabs,
+body.wb-form-page #pageForm.wb-modern-form .wb-form-tabs {
+  background: color-mix(in srgb, var(--liquid-glass) 82%, transparent) !important;
+  border-color: var(--liquid-border) !important;
+  backdrop-filter: blur(16px);
+}
+
+body.wb-form-page #pageForm.wb-modern-form .wb-form-section,
+body.wb-form-page #pageForm.wb-modern-form fieldset {
+  border-color: var(--liquid-border) !important;
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--liquid-glass) 76%, transparent), transparent) !important;
+}
+
+/* V1 workspaces: command bar, filters, data and pagination form one surface. */
+body.wb-list-page #pageContent > .wb-list-command-bar,
+body.wb-list-page .wb-table-workspace > .wb-list-command-bar {
+  position: relative;
+  min-height: 76px;
+  padding: 14px 16px !important;
+  border: 1px solid var(--liquid-border) !important;
+  border-radius: 18px 18px 0 0 !important;
+  background: linear-gradient(110deg,
+    color-mix(in srgb, var(--wb-accent) 8%, var(--liquid-glass)),
+    color-mix(in srgb, var(--liquid-glass-strong) 74%, transparent)) !important;
+  box-shadow: 0 14px 34px rgba(7,11,32,.11), inset 0 1px rgba(255,255,255,.08) !important;
+  backdrop-filter: blur(18px);
+}
+
+body.wb-list-page #pageContent > .wb-list-command-bar::before,
+body.wb-list-page .wb-table-workspace > .wb-list-command-bar::before {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  border-radius: 18px 0 0 18px;
+  background: linear-gradient(var(--wb-accent), var(--liquid-cyan));
+  content: "";
+  opacity: .8;
+}
+
+body.wb-list-page .wb-table-workspace,
+body.wb-list-page #pageContent > .table-wrapper {
+  border: 1px solid var(--liquid-border) !important;
+  border-radius: 0 0 20px 20px !important;
+  background: color-mix(in srgb, var(--liquid-glass) 76%, transparent) !important;
+  box-shadow: 0 20px 55px rgba(7,11,32,.14), inset 0 1px rgba(255,255,255,.05) !important;
+  backdrop-filter: blur(18px);
+  overflow: clip;
+}
+
+body.wb-list-page :where(.wb-table-viewport, .table-responsive) {
+  background: transparent !important;
+}
+
+body.wb-list-page .wb-data-table > thead > tr:first-child > :where(th, td) {
+  padding-block: 18px !important;
+  color: color-mix(in srgb, var(--liquid-text) 82%, var(--liquid-muted)) !important;
+  background: color-mix(in srgb, var(--liquid-glass-strong) 76%, transparent) !important;
+  border-bottom: 1px solid var(--liquid-border) !important;
+  font-size: 11px !important;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+body.wb-list-page .wb-data-table > thead > tr[data-workbench-filter-row] {
+  background: color-mix(in srgb, var(--liquid-glass-strong) 54%, transparent) !important;
+  box-shadow: inset 0 -1px var(--liquid-border);
+}
+
+body.wb-list-page .wb-data-table > thead > tr[data-workbench-filter-row] > :where(th, td) {
+  padding-block: 12px !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+
+body.wb-list-page .wb-data-table > thead > tr[data-workbench-filter-row] :where(input, select, .form-control, .wb-select__control) {
+  min-height: 42px !important;
+  border-color: var(--liquid-border) !important;
+  border-radius: 11px !important;
+  background: color-mix(in srgb, var(--liquid-glass-strong) 72%, transparent) !important;
+}
+
+body.wb-list-page .wb-data-table > tbody > tr {
+  transition: background-color .16s ease;
+}
+
+body.wb-list-page .wb-data-table > tbody > tr:hover > :where(th, td) {
+  background: color-mix(in srgb, var(--wb-accent) 9%, var(--liquid-glass)) !important;
+}
+
+body.wb-list-page .wb-table-actions {
+  gap: 7px !important;
+}
+
+body.wb-list-page .wb-table-actions :where(a, button, .btn) {
+  border-color: var(--liquid-border) !important;
+  background: color-mix(in srgb, var(--liquid-glass-strong) 72%, transparent) !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.07), 0 6px 16px rgba(7,11,32,.09);
+}
+
+body.wb-list-page .wb-table-actions :where(a, button, .btn):hover {
+  border-color: color-mix(in srgb, var(--wb-accent) 48%, var(--liquid-border)) !important;
+  background: color-mix(in srgb, var(--wb-accent) 11%, var(--liquid-glass-strong)) !important;
+}
+
+body.wb-list-page :where(.wb-table-footer, .wb-list-footer, .wb-pagination) {
+  min-height: 62px;
+  margin: 0 !important;
+  padding: 12px 16px !important;
+  border: 0 !important;
+  border-top: 1px solid var(--liquid-border) !important;
+  border-radius: 0 0 20px 20px !important;
+  background: color-mix(in srgb, var(--liquid-glass-strong) 58%, transparent) !important;
+}
+
+body.wb-list-page :where(.pagination, .wb-pagination__pages) :where(a, button, span) {
+  min-width: 38px;
+  min-height: 38px;
+  border-color: var(--liquid-border) !important;
+  border-radius: 11px !important;
+  color: var(--liquid-muted) !important;
+  background: color-mix(in srgb, var(--liquid-glass) 76%, transparent) !important;
+}
+
+body.wb-list-page :where(.pagination, .wb-pagination__pages) .active > :where(a, span),
+body.wb-list-page :where(.pagination, .wb-pagination__pages) [aria-current="page"] {
+  color: #fff !important;
+  border-color: color-mix(in srgb, var(--wb-accent) 68%, white) !important;
+  background: linear-gradient(135deg, var(--wb-accent), color-mix(in srgb, var(--wb-accent) 60%, var(--liquid-cyan))) !important;
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--wb-accent) 24%, transparent);
+}
+
+/* Forms: editorial sections, clear focus and a connected action rail. */
+body.wb-form-page #pageContent > .wb-page-header,
+body.wb-list-page #pageContent > .wb-page-header {
+  padding: 24px 26px !important;
+  border: 1px solid var(--liquid-border) !important;
+  border-radius: 20px !important;
+  background: radial-gradient(circle at 92% 0,
+    color-mix(in srgb, var(--wb-accent) 11%, transparent), transparent 22rem),
+    color-mix(in srgb, var(--liquid-glass) 78%, transparent) !important;
+  box-shadow: 0 14px 40px rgba(7,11,32,.1);
+  backdrop-filter: blur(18px);
+}
+
+body.wb-form-page #pageForm.wb-modern-form {
+  border: 1px solid var(--liquid-border) !important;
+  border-radius: 20px !important;
+  background: color-mix(in srgb, var(--liquid-glass) 72%, transparent) !important;
+  box-shadow: 0 20px 56px rgba(7,11,32,.14), inset 0 1px rgba(255,255,255,.06) !important;
+  backdrop-filter: blur(18px);
+  overflow: clip;
+}
+
+body.wb-form-page #pageForm.wb-modern-form .content-tab-wrapper > .nav-tabs {
+  padding: 9px !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--liquid-border) !important;
+  border-radius: 0 !important;
+}
+
+body.wb-form-page #pageForm.wb-modern-form :where(.nav-tabs, .wb-form-tabs) > li > a {
+  min-height: 42px;
+  padding: 10px 14px !important;
+  border: 1px solid transparent !important;
+  border-radius: 11px !important;
+  color: var(--liquid-muted) !important;
+  background: transparent !important;
+}
+
+body.wb-form-page #pageForm.wb-modern-form :where(.nav-tabs, .wb-form-tabs) > .active > a {
+  border-color: color-mix(in srgb, var(--wb-accent) 32%, var(--liquid-border)) !important;
+  color: color-mix(in srgb, var(--liquid-text) 86%, var(--wb-accent)) !important;
+  background: color-mix(in srgb, var(--wb-accent) 11%, var(--liquid-glass-strong)) !important;
+  box-shadow: 0 7px 18px color-mix(in srgb, var(--wb-accent) 10%, transparent);
+}
+
+body.wb-form-page #pageForm.wb-modern-form :where(.wb-field-label, .control-label) {
+  color: var(--liquid-text) !important;
+  font-weight: 720 !important;
+}
+
+body.wb-form-page #pageForm.wb-modern-form :where(.wb-form-actions, .form-actions, .buttonHolder) {
+  border-top: 1px solid var(--liquid-border) !important;
+  background: color-mix(in srgb, var(--liquid-glass-strong) 72%, transparent) !important;
+  box-shadow: 0 -14px 34px rgba(7,11,32,.08);
+  backdrop-filter: blur(18px);
+}
+
+body.wb-form-page #pageForm.wb-modern-form
+  :where(.wb-form-actions, .form-actions, .buttonHolder)
+  :where(.formbutton-success, button[type="submit"], input[type="submit"]) {
+  color: var(--wb-action-contrast, #fff) !important;
+  border-color: color-mix(in srgb, var(--wb-action) 72%, white) !important;
+  background: linear-gradient(120deg,
+    var(--wb-action),
+    color-mix(in srgb, var(--wb-action) 68%, var(--liquid-cyan))) !important;
+  box-shadow: 0 12px 28px color-mix(in srgb, var(--wb-action) 25%, transparent),
+    inset 0 1px rgba(255,255,255,.24) !important;
+}
+
+body.wb-form-page #pageForm.wb-modern-form
+  :where(.wb-form-actions, .form-actions, .buttonHolder)
+  :where(.formbutton-default, button[type="button"], input[type="button"]) {
+  color: var(--liquid-text) !important;
+  border-color: var(--liquid-border) !important;
+  background: color-mix(in srgb, var(--liquid-glass-strong) 82%, transparent) !important;
+}
+
+body.wb-form-page #pageForm.wb-modern-form :where(.wb-upload-dropzone, .wb-branding-manager__asset, .wb-color-control-deck) {
+  border: 1px dashed color-mix(in srgb, var(--wb-accent) 36%, var(--liquid-border)) !important;
+  border-radius: 15px !important;
+  background: radial-gradient(circle at 100% 0,
+    color-mix(in srgb, var(--wb-accent) 8%, transparent), transparent 60%),
+    color-mix(in srgb, var(--liquid-glass) 68%, transparent) !important;
+}
+
+/* Monitoring keeps semantic state colours; LIQUID supplies depth. */
+body.wb-monitor-page #pageContent :where(.wb-monitor-state-card, .wb-monitor-chart, .wb-statistics-metric, .panel, .content-box) {
+  border: 1px solid var(--liquid-border) !important;
+  border-radius: 18px !important;
+  background: radial-gradient(circle at 100% 0,
+    color-mix(in srgb, var(--wb-accent) 8%, transparent), transparent 44%),
+    color-mix(in srgb, var(--liquid-glass) 76%, transparent) !important;
+  box-shadow: 0 16px 44px rgba(7,11,32,.13), inset 0 1px rgba(255,255,255,.06) !important;
+  backdrop-filter: blur(18px);
+}
+
+body.wb-monitor-page #pageContent .wb-monitor-chart canvas {
+  border-radius: 14px;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--wb-accent) 5%, transparent), transparent) !important;
+}
+
+body.wb-monitor-page #pageContent :where([data-state="ok"], .wb-monitor-state-card--ok) {
+  border-color: color-mix(in srgb, #22c55e 34%, var(--liquid-border)) !important;
+}
+
+body.wb-monitor-page #pageContent :where([data-state="warning"], .wb-monitor-state-card--warning) {
+  border-color: color-mix(in srgb, #f59e0b 42%, var(--liquid-border)) !important;
+}
+
+body.wb-monitor-page #pageContent :where([data-state="critical"], .wb-monitor-state-card--critical) {
+  border-color: color-mix(in srgb, #ef4444 44%, var(--liquid-border)) !important;
+}
+
+/* Floating layers remain visually connected to the active theme. */
+.wb-dialog__backdrop,
+.modal-backdrop {
+  background: rgba(2,5,16,.66) !important;
+  backdrop-filter: blur(8px);
+}
+
+.wb-dialog__surface,
+#pageContent .modal-content,
+body > :where(.dropdown-menu, .wb-select__panel, .wb-owned-enhanced-select__panel) {
+  border: 1px solid var(--liquid-border) !important;
+  border-radius: 18px !important;
+  background: linear-gradient(145deg,
+    color-mix(in srgb, var(--liquid-glass-strong) 94%, transparent), var(--liquid-glass)) !important;
+  box-shadow: 0 30px 90px rgba(2,5,16,.38), inset 0 1px rgba(255,255,255,.1) !important;
+  backdrop-filter: blur(28px) saturate(145%);
+}
+
+.wb-dialog__surface :where(.wb-dialog__header, .modal-header, .wb-dialog__footer, .modal-footer),
+#pageContent .modal-content :where(.modal-header, .modal-footer) {
+  border-color: var(--liquid-border) !important;
+  background: color-mix(in srgb, var(--liquid-glass-strong) 54%, transparent) !important;
+}
+
+.wb-login-shell {
+  background:
+    radial-gradient(circle at 18% 18%, color-mix(in srgb, var(--wb-accent) 30%, transparent), transparent 34rem),
+    radial-gradient(circle at 82% 76%, rgba(0,212,255,.19), transparent 31rem),
+    linear-gradient(145deg, #050817, #0b1230 60%, #080c20) #050817 !important;
+}
+
+.wb-login-hero,
+.wb-login-card,
+.wb-login-form-surface {
+  border-color: rgba(150, 160, 235, .2) !important;
+  background: linear-gradient(145deg, rgba(23,31,69,.72), rgba(10,15,38,.77)) #101735 !important;
+  box-shadow: 0 30px 90px rgba(0,0,0,.4), inset 0 1px rgba(255,255,255,.09) !important;
+  backdrop-filter: blur(30px) saturate(145%);
+}
+
+.wb-login-page,
+.wb-login-page h1,
+.wb-login-page h2,
+.wb-login-page label,
+.wb-login-page p {
+  color: #f2f4ff !important;
+}
+
+.wb-login-page small,
+.wb-login-page .wb-login-hero__kicker {
+  color: #aeb7d7 !important;
+}
+
+.wb-dialog__backdrop {
+  color: #fff !important;
+}
+
+.wb-login-page .wb-login-security {
+  color: #c0c8e3 !important;
+}
+
+.wb-login-page .wb-login-theme-toggle {
+  color: #f2f4ff !important;
+  background: rgba(9, 14, 35, .78) !important;
+  border-color: rgba(146, 156, 226, .28) !important;
+}
+
+.wb-login-page input {
+  color: #f5f7ff !important;
+  background: rgba(9,14,35,.7) !important;
+  border-color: rgba(146,156,226,.24) !important;
+}
+
+.wb-login-badge {
+  color: #d9dcff !important;
+  border-color: rgba(142,153,226,.28) !important;
+  background: rgba(108,99,255,.13) !important;
+}
+
+.wb-login-hero::before {
+  background:
+    radial-gradient(circle, color-mix(in srgb, var(--wb-accent) 44%, transparent), transparent 64%) !important;
+  filter: blur(12px);
+}
+
+.wb-login-hero::after {
+  border-color: rgba(142, 153, 226, .16) !important;
+  box-shadow: 0 0 0 72px rgba(108,99,255,.035), 0 0 0 144px rgba(0,212,255,.025);
+}
+
+.wb-login-form-surface .wb-auth-primary,
+.wb-login-form-surface input[type="submit"].wb-auth-primary {
+  color: #fff !important;
+  border-color: color-mix(in srgb, var(--wb-action) 70%, white) !important;
+  background: linear-gradient(115deg, var(--wb-action), color-mix(in srgb, var(--wb-action) 64%, var(--liquid-cyan))) !important;
+  box-shadow: 0 16px 38px color-mix(in srgb, var(--wb-action) 34%, transparent), inset 0 1px rgba(255,255,255,.28) !important;
+}
+
+.wb-login-form-surface :where(.wb-auth-choice, .wb-auth-notice, .alert) {
+  border-color: rgba(146,156,226,.2) !important;
+  background: rgba(9,14,35,.46) !important;
+}
+
+@media (max-width: 767px) {
+  :root { --liquid-blur: 14px; }
+  body::after { display: none; }
+  .wb-dashlet,
+  .wb-table-workspace,
+  .wb-form-workspace,
+  .wb-list-workspace { box-shadow: 0 10px 30px rgba(14,20,48,.14) !important; }
+  body.wb-dashboard-page #pageContent.wb-dashboard-layout > .wb-dashboard-hero {
+    min-height: 150px;
+    padding: 26px 22px !important;
+    border-radius: 18px !important;
+  }
+  body.wb-list-page #pageContent > .wb-list-command-bar,
+  body.wb-list-page .wb-table-workspace > .wb-list-command-bar {
+    min-height: 64px;
+    border-radius: 15px 15px 0 0 !important;
+  }
+  body.wb-form-page #pageContent > .wb-page-header,
+  body.wb-list-page #pageContent > .wb-page-header {
+    padding: 19px 18px !important;
+    border-radius: 16px !important;
+  }
+}
+
+/* LIQUID 1.1 premium operations and commerce system
+ * One calm visual language for navigation, operational state, monitoring,
+ * extensions and the optional billing product. Business behavior stays owned
+ * by the existing Workbench contracts.
+ */
+body.wb-app-navigation-enabled .wb-mobile-navigation {
+  border-right-color: color-mix(in srgb, var(--wb-accent) 18%, var(--liquid-border)) !important;
+  background:
+    radial-gradient(circle at 18% 0, color-mix(in srgb, var(--wb-accent) 13%, transparent), transparent 19rem),
+    linear-gradient(180deg, color-mix(in srgb, var(--liquid-glass-strong) 92%, #070b20), color-mix(in srgb, var(--liquid-glass) 88%, #070b20)) !important;
+  box-shadow: 24px 0 70px rgba(3, 7, 22, .28), inset -1px 0 rgba(255, 255, 255, .035);
+}
+
+body.wb-app-navigation-enabled .wb-mobile-navigation__content {
+  padding-inline: 12px !important;
+  scrollbar-color: color-mix(in srgb, var(--wb-accent) 32%, transparent) transparent;
+}
+
+body.wb-app-navigation-enabled .wb-mobile-navigation__modules > li {
+  inline-size: 100%;
+  min-inline-size: 0;
+  box-sizing: border-box;
+  padding-block: 3px;
+  border-bottom-color: rgba(255, 255, 255, .045) !important;
+}
+
+body.wb-app-navigation-enabled .wb-mobile-navigation__module {
+  inline-size: 100%;
+  box-sizing: border-box;
+  min-height: 50px;
+  border: 1px solid transparent !important;
+  border-radius: 13px !important;
+  letter-spacing: -.008em;
+}
+
+body.wb-app-navigation-enabled .wb-mobile-navigation__module:is(:hover, :focus-visible) {
+  border-color: rgba(255, 255, 255, .08) !important;
+  background: rgba(255, 255, 255, .055) !important;
+}
+
+body.wb-app-navigation-enabled .wb-mobile-navigation__module:is(.active, [aria-current="page"]) {
+  border-color: color-mix(in srgb, var(--wb-accent) 32%, rgba(255, 255, 255, .08)) !important;
+  background:
+    linear-gradient(112deg, color-mix(in srgb, var(--wb-accent) 17%, transparent), rgba(255, 255, 255, .055)) !important;
+  box-shadow: inset 0 1px rgba(255, 255, 255, .07), 0 10px 26px rgba(2, 5, 18, .18);
+}
+
+body.wb-app-navigation-enabled .wb-mobile-navigation__secondary {
+  margin: 4px 0 8px !important;
+  padding: 10px 8px 10px 12px !important;
+  border: 1px solid rgba(255, 255, 255, .045);
+  border-radius: 14px;
+  background: rgba(3, 7, 22, .17);
+}
+
+body.wb-app-navigation-enabled .wb-mobile-navigation__secondary-label {
+  padding-inline: 8px !important;
+  color: color-mix(in srgb, var(--wb-accent) 64%, #dce5ff) !important;
+  letter-spacing: .09em !important;
+}
+
+body.wb-app-navigation-enabled .wb-mobile-navigation :where(
+  .wb-mobile-navigation__module > strong,
+  .wb-mobile-navigation__module > span,
+  .wb-mobile-navigation__secondary-label > strong,
+  .wb-mobile-navigation__secondary-label > span,
+  .wb-mobile-navigation__secondary-link > strong,
+  .wb-mobile-navigation__secondary-link > span
+) {
+  color: inherit !important;
+}
+
+body.wb-app-navigation-enabled .wb-mobile-navigation__content strong {
+  color: #34415c !important;
+}
+
+body.wb-app-navigation-enabled .wb-mobile-navigation__secondary-label :where(strong, span) {
+  color: color-mix(in srgb, var(--wb-accent) 64%, #dce5ff) !important;
+}
+
+body.wb-app-navigation-enabled .wb-mobile-navigation__secondary-link {
+  inline-size: 100%;
+  min-inline-size: 0;
+  box-sizing: border-box;
+  min-height: 40px;
+  padding-inline: 12px !important;
+  color: #45536e !important;
+  border-radius: 10px !important;
+}
+
+body.wb-app-navigation-enabled .wb-mobile-navigation__secondary-row {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 2.25rem !important;
+  align-items: center;
+  inline-size: 100%;
+  min-inline-size: 0;
+  gap: 7px !important;
+}
+
+html[data-wb-theme="dark"] body.wb-app-navigation-enabled .wb-mobile-navigation__content strong {
+  color: #d7e0f0 !important;
+}
+
+html[data-wb-theme="dark"] body.wb-app-navigation-enabled .wb-mobile-navigation__secondary-link {
+  color: #b9c5db !important;
+}
+
+body.wb-app-navigation-enabled .wb-mobile-navigation__secondary-link:is(:hover, :focus-visible) {
+  background: rgba(255, 255, 255, .055) !important;
+}
+
+body.wb-app-navigation-enabled .wb-mobile-navigation__secondary-link:is(.active, [aria-current="page"]) {
+  color: #fff !important;
+  background: color-mix(in srgb, var(--wb-accent) 16%, rgba(255, 255, 255, .05)) !important;
+  box-shadow: inset 3px 0 var(--wb-accent);
+}
+
+body.wb-app-navigation-enabled .wb-mobile-navigation__quick-action {
+  inline-size: 2.25rem !important;
+  min-inline-size: 2.25rem !important;
+  block-size: 2.25rem !important;
+  min-block-size: 2.25rem !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  justify-self: end;
+  border-color: rgba(255, 255, 255, .12) !important;
+  background: rgba(255, 255, 255, .035) !important;
+}
+
+body.wb-app-navigation-enabled .wb-mobile-navigation__quick-action:is(:hover, :focus-visible) {
+  border-color: color-mix(in srgb, var(--wb-accent) 54%, rgba(255, 255, 255, .12)) !important;
+  color: #fff !important;
+  background: color-mix(in srgb, var(--wb-accent) 16%, rgba(255, 255, 255, .045)) !important;
+}
+
+body.wb-app-navigation-enabled .wb-app-navigation__footer {
+  margin: 10px 12px 12px !important;
+  border-color: rgba(255, 255, 255, .075) !important;
+  border-radius: 15px !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, .065), rgba(255, 255, 255, .025)) !important;
+  box-shadow: inset 0 1px rgba(255, 255, 255, .06), 0 14px 34px rgba(1, 4, 15, .18);
+}
+
+body.wb-app-navigation-enabled.wb-dialog-open .wb-mobile-navigation__content,
+body.wb-app-navigation-enabled.wb-dialog-open .wb-app-navigation__footer {
+  visibility: hidden;
+}
+
+/* Operational state never borrows the configurable accent as a severity. */
+body.wb-app-navigation-enabled {
+  --liquid-state-info: #38bdf8;
+  --liquid-state-success: #22c55e;
+  --liquid-state-warning: #f59e0b;
+  --liquid-state-danger: #ef4444;
+}
+
+body.wb-app-navigation-enabled #pageContent :where(.wb-alert, .alert, .wb-notice, .wb-feedback) {
+  border-radius: 15px !important;
+  box-shadow: inset 0 1px rgba(255, 255, 255, .08), 0 12px 28px rgba(7, 11, 32, .06);
+  backdrop-filter: blur(18px) saturate(125%);
+}
+
+body.wb-app-navigation-enabled #pageContent :where(.wb-alert--info, .alert-info, .wb-notice--info) {
+  border-color: color-mix(in srgb, var(--liquid-state-info) 34%, var(--liquid-border)) !important;
+  background: color-mix(in srgb, var(--liquid-state-info) 8%, var(--liquid-glass-strong)) !important;
+}
+
+body.wb-app-navigation-enabled #pageContent :where(.wb-alert--success, .alert-success, .wb-notice--success) {
+  border-color: color-mix(in srgb, var(--liquid-state-success) 34%, var(--liquid-border)) !important;
+  background: color-mix(in srgb, var(--liquid-state-success) 8%, var(--liquid-glass-strong)) !important;
+}
+
+body.wb-app-navigation-enabled #pageContent :where(.wb-alert--warning, .alert-warning, .wb-notice--warning) {
+  border-color: color-mix(in srgb, var(--liquid-state-warning) 38%, var(--liquid-border)) !important;
+  background: color-mix(in srgb, var(--liquid-state-warning) 9%, var(--liquid-glass-strong)) !important;
+}
+
+body.wb-app-navigation-enabled #pageContent :where(.wb-alert--danger, .alert-danger, .wb-notice--danger) {
+  border-color: color-mix(in srgb, var(--liquid-state-danger) 38%, var(--liquid-border)) !important;
+  background: color-mix(in srgb, var(--liquid-state-danger) 9%, var(--liquid-glass-strong)) !important;
+}
+
+body.wb-app-navigation-enabled :where(.wb-form-state, .wb-submit-feedback) {
+  border-color: var(--liquid-border) !important;
+  border-radius: 999px !important;
+  background: color-mix(in srgb, var(--liquid-glass-strong) 72%, transparent) !important;
+  box-shadow: inset 0 1px rgba(255, 255, 255, .08);
+}
+
+/* Monitoring is a cockpit, not a collection of unrelated legacy panels. */
+body.wb-app-navigation-enabled.wb-monitor-page #pageContent :where(.wb-monitor-workspace, .wb-monitor-surface) {
+  gap: 16px;
+}
+
+body.wb-app-navigation-enabled.wb-monitor-page #pageContent .wb-monitor-hero {
+  min-height: 132px;
+  padding: clamp(20px, 3vw, 30px) !important;
+  border: 1px solid var(--liquid-border) !important;
+  border-radius: 22px !important;
+  background:
+    radial-gradient(circle at 84% 12%, color-mix(in srgb, var(--liquid-cyan) 12%, transparent), transparent 17rem),
+    radial-gradient(circle at 12% 0, color-mix(in srgb, var(--wb-accent) 12%, transparent), transparent 20rem),
+    color-mix(in srgb, var(--liquid-glass) 82%, transparent) !important;
+  box-shadow: var(--liquid-elevation-2), inset 0 1px var(--liquid-specular) !important;
+}
+
+body.wb-app-navigation-enabled.wb-monitor-page #pageContent :where(.wb-monitor-refresh-panel, .wb-monitor-status-panel, .wb-monitor-chart-panel, .wb-monitor-state-card, .wb-monitor-chart) {
+  border-color: var(--liquid-border) !important;
+  border-radius: 18px !important;
+  background: color-mix(in srgb, var(--liquid-glass) 82%, transparent) !important;
+  box-shadow: var(--liquid-elevation-1), inset 0 1px var(--liquid-specular) !important;
+  backdrop-filter: blur(20px) saturate(130%);
+}
+
+body.wb-app-navigation-enabled.wb-monitor-page #pageContent .wb-monitor-refresh-panel {
+  padding: 13px !important;
+  background: color-mix(in srgb, var(--liquid-glass-strong) 66%, transparent) !important;
+}
+
+body.wb-app-navigation-enabled.wb-monitor-page #pageContent .wb-monitor-state-card {
+  min-height: 112px;
+  transition: border-color .16s ease, transform .16s ease, box-shadow .16s ease;
+}
+
+body.wb-app-navigation-enabled.wb-monitor-page #pageContent .wb-monitor-state-card:is(:hover, :focus-within) {
+  border-color: color-mix(in srgb, var(--wb-accent) 28%, var(--liquid-border)) !important;
+  box-shadow: var(--liquid-elevation-2), inset 0 1px var(--liquid-specular) !important;
+  transform: translateY(-1px);
+}
+
+body.wb-app-navigation-enabled.wb-monitor-page #pageContent .wb-monitor-chart {
+  min-height: 300px;
+  overflow: hidden;
+}
+
+body.wb-app-navigation-enabled.wb-monitor-page #pageContent .wb-monitor-chart__viewport {
+  border-color: color-mix(in srgb, var(--liquid-border) 76%, transparent) !important;
+  border-radius: 14px !important;
+  background:
+    linear-gradient(color-mix(in srgb, var(--liquid-border) 35%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--liquid-border) 35%, transparent) 1px, transparent 1px),
+    color-mix(in srgb, var(--liquid-glass-strong) 54%, transparent) !important;
+  background-size: 32px 32px !important;
+}
+
+/* Extension Installer uses the same product hierarchy as native modules. */
+body.wb-app-navigation-enabled #pageContent .wb-extension-hero {
+  padding: clamp(20px, 3vw, 30px) !important;
+  border: 1px solid var(--liquid-border) !important;
+  border-radius: 22px !important;
+  background:
+    radial-gradient(circle at 88% 10%, color-mix(in srgb, var(--liquid-violet) 15%, transparent), transparent 18rem),
+    color-mix(in srgb, var(--liquid-glass) 82%, transparent) !important;
+  box-shadow: var(--liquid-elevation-2), inset 0 1px var(--liquid-specular) !important;
+}
+
+body.wb-app-navigation-enabled #pageContent .wb-extension-workspace :where(.wb-table-workspace, .wb-modern-form, .wb-content-card) {
+  border-color: var(--liquid-border) !important;
+  border-radius: 20px !important;
+  background: color-mix(in srgb, var(--liquid-glass) 82%, transparent) !important;
+  box-shadow: var(--liquid-elevation-1), inset 0 1px var(--liquid-specular) !important;
+}
+
+body.wb-app-navigation-enabled #pageContent .wb-extension-workspace .wb-list-toolbar {
+  min-height: 54px;
+  margin: 0 !important;
+  padding: 14px 16px !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--liquid-border) !important;
+  border-radius: 0 !important;
+  background: color-mix(in srgb, var(--liquid-glass-strong) 58%, transparent) !important;
+}
+
+body.wb-app-navigation-enabled #pageContent .wb-extension-workspace .wb-list-toolbar__context {
+  display: flex;
+  min-height: 26px;
+  align-items: center;
+}
+
+body.wb-app-navigation-enabled #pageContent .wb-extension-workspace .wb-specialty-badges > * {
+  border-color: color-mix(in srgb, var(--liquid-violet) 30%, var(--liquid-border)) !important;
+  background: color-mix(in srgb, var(--liquid-violet) 8%, var(--liquid-glass-strong)) !important;
+}
+
+/* Optional Billing product: LIQUID skin over its stable, isolated contracts. */
+body.wb-app-navigation-enabled #pageContent .wb-billing-product {
+  --billing-accent: var(--wb-accent);
+  display: grid;
+  gap: 16px;
+  color: var(--liquid-text);
+}
+
+body.wb-app-navigation-enabled #pageContent .wb-billing-hero {
+  padding: clamp(22px, 3vw, 32px) !important;
+  border: 1px solid var(--liquid-border) !important;
+  border-radius: 22px !important;
+  background:
+    radial-gradient(circle at 88% 0, color-mix(in srgb, var(--liquid-cyan) 12%, transparent), transparent 18rem),
+    radial-gradient(circle at 8% 0, color-mix(in srgb, var(--wb-accent) 12%, transparent), transparent 20rem),
+    color-mix(in srgb, var(--liquid-glass) 84%, transparent) !important;
+  box-shadow: var(--liquid-elevation-2), inset 0 1px var(--liquid-specular) !important;
+}
+
+body.wb-app-navigation-enabled #pageContent .wb-billing-product :where(.wb-billing-panel, .wb-billing-summary-card, .wb-billing-command-center, .wb-billing-role-boundary) {
+  border-color: var(--liquid-border) !important;
+  border-radius: 18px !important;
+  color: var(--liquid-text);
+  background: color-mix(in srgb, var(--liquid-glass) 82%, transparent) !important;
+  box-shadow: var(--liquid-elevation-1), inset 0 1px var(--liquid-specular) !important;
+  backdrop-filter: blur(20px) saturate(130%);
+}
+
+body.wb-app-navigation-enabled #pageContent .wb-billing-product :where(.wb-billing-area, .wb-billing-capability, .wb-billing-settings-card, .wb-billing-document-card) {
+  border-color: var(--liquid-border) !important;
+  border-radius: 14px !important;
+  color: var(--liquid-text);
+  background: color-mix(in srgb, var(--liquid-glass-strong) 66%, transparent) !important;
+}
+
+body.wb-app-navigation-enabled #pageContent .wb-billing-product :where(.wb-billing-area, .wb-billing-document-card):is(:hover, :focus-visible, :focus-within) {
+  border-color: color-mix(in srgb, var(--wb-accent) 30%, var(--liquid-border)) !important;
+  box-shadow: 0 14px 32px color-mix(in srgb, var(--wb-accent) 10%, transparent) !important;
+  transform: translateY(-1px);
+}
+
+body.wb-app-navigation-enabled #pageContent .wb-billing-product :where(input, select, textarea, .form-control) {
+  border-color: var(--liquid-border) !important;
+  border-radius: 12px !important;
+  color: var(--liquid-text) !important;
+  background: color-mix(in srgb, var(--liquid-glass-strong) 72%, transparent) !important;
+}
+
+body.wb-app-navigation-enabled #pageContent .wb-billing-product :where(input, select, textarea, .form-control):focus {
+  border-color: color-mix(in srgb, var(--wb-accent) 58%, var(--liquid-border)) !important;
+  box-shadow: 0 0 0 3px var(--liquid-focus) !important;
+}
+
+body.wb-app-navigation-enabled #pageContent .wb-billing-product :where(.wb-billing-table-wrap, .wb-billing-table) {
+  border-color: var(--liquid-border) !important;
+  background: transparent !important;
+}
+
+body.wb-app-navigation-enabled #pageContent .wb-billing-product .wb-billing-table > thead {
+  background: color-mix(in srgb, var(--liquid-glass-strong) 62%, transparent) !important;
+}
+
+body.wb-app-navigation-enabled #pageContent .wb-billing-product .wb-billing-table :where(th, td) {
+  border-color: var(--liquid-border) !important;
+}
+
+@media (max-width: 767px) {
+  body.wb-app-navigation-enabled .wb-mobile-navigation__content {
+    padding-inline: 9px !important;
+  }
+
+  body.wb-app-navigation-enabled .wb-app-navigation__footer {
+    margin-inline: 9px !important;
+  }
+
+  body.wb-app-navigation-enabled.wb-monitor-page #pageContent .wb-monitor-hero,
+  body.wb-app-navigation-enabled #pageContent :where(.wb-extension-hero, .wb-billing-hero) {
+    min-height: 0;
+    padding: 18px !important;
+    border-radius: 18px !important;
+  }
+
+  body.wb-app-navigation-enabled.wb-monitor-page #pageContent .wb-monitor-chart {
+    min-height: 240px;
+  }
+
+  body.wb-app-navigation-enabled #pageContent .wb-billing-product :where(.wb-billing-summary, .wb-billing-kpi-grid, .wb-billing-area-grid, .wb-billing-workspace-grid) {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.wb-app-navigation-enabled :where(.wb-monitor-state-card, .wb-billing-area, .wb-billing-document-card) {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+@media (forced-colors: active) {
+  body.wb-app-navigation-enabled :where(.wb-monitor-state-card, .wb-monitor-chart, .wb-extension-hero, .wb-billing-panel, .wb-billing-summary-card) {
+    border: 1px solid CanvasText !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wb-action-control,
+  #pageContent .btn-primary,
+  .wb-dashlet { transition: none !important; transform: none !important; }
+}
+
+@media (prefers-contrast: more) {
+  :root { --liquid-border: rgba(64,75,120,.44); }
+  :root[data-wb-theme="dark"] { --liquid-border: rgba(190,198,255,.45); }
+  .wb-dashlet,
+  .wb-table-workspace,
+  .wb-form-workspace { backdrop-filter: none; background: var(--liquid-glass-strong) !important; }
+}
+
+/*
+ * LIQUID 1.1 product composition
+ *
+ * The shared Workbench engine owns behavior, accessibility, data and server
+ * workflows. LIQUID owns optical hierarchy, glass depth and restrained motion.
+ */
+:root {
+  --liquid-radius-sm: 12px;
+  --liquid-radius-md: 18px;
+  --liquid-radius-lg: 24px;
+  --liquid-hairline: color-mix(in srgb, var(--liquid-border) 76%, transparent);
+  --liquid-specular: rgba(255, 255, 255, .28);
+  --liquid-elevation-1: 0 10px 28px rgba(37, 44, 92, .09);
+  --liquid-elevation-2: 0 22px 60px rgba(28, 34, 78, .14);
+  --liquid-focus: color-mix(in srgb, var(--wb-accent) 24%, transparent);
+}
+
+:root[data-wb-theme="dark"] {
+  --liquid-hairline: rgba(152, 163, 229, .16);
+  --liquid-specular: rgba(255, 255, 255, .11);
+  --liquid-elevation-1: 0 12px 34px rgba(0, 0, 0, .22);
+  --liquid-elevation-2: 0 28px 78px rgba(0, 0, 0, .34);
+}
+
+body.wb-app-navigation-enabled .wb-app-header {
+  border-bottom: 1px solid var(--liquid-hairline) !important;
+  box-shadow: 0 12px 34px color-mix(in srgb, var(--liquid-canvas-deep) 18%, transparent);
+}
+
+body.wb-app-navigation-enabled .wb-app-header::after {
+  position: absolute;
+  inset: auto 0 -1px;
+  height: 1px;
+  content: "";
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent 8%,
+    color-mix(in srgb, var(--wb-accent) 40%, transparent) 42%,
+    color-mix(in srgb, var(--liquid-cyan) 32%, transparent) 66%, transparent 92%);
+}
+
+body.wb-app-navigation-enabled :where(.wb-theme-toggle, .wb-navigation-toggle, .notification) {
+  border-radius: var(--liquid-radius-sm) !important;
+  transition: border-color .18s ease, background-color .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+
+body.wb-app-navigation-enabled :where(.wb-theme-toggle, .wb-navigation-toggle, .notification):is(:hover, :focus-visible) {
+  border-color: color-mix(in srgb, var(--wb-accent) 34%, var(--liquid-border)) !important;
+  box-shadow: 0 0 0 4px var(--liquid-focus), var(--liquid-elevation-1);
+  transform: translateY(-1px);
+}
+
+body.wb-app-navigation-enabled .wb-app-navigation__item:is(.is-active, .active),
+body.wb-app-navigation-enabled #main-navigation .active > a {
+  box-shadow: inset 2px 0 color-mix(in srgb, var(--wb-accent) 86%, white),
+    inset 0 1px var(--liquid-specular),
+    0 10px 28px color-mix(in srgb, var(--wb-accent) 10%, transparent) !important;
+}
+
+body.wb-app-navigation-enabled #pageContent > .wb-page-header {
+  overflow: hidden;
+  isolation: isolate;
+}
+
+body.wb-app-navigation-enabled #pageContent > .wb-page-header::after {
+  position: absolute;
+  z-index: -1;
+  width: clamp(170px, 22vw, 340px);
+  aspect-ratio: 1;
+  inset: -72% -4% auto auto;
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
+  background: radial-gradient(circle, color-mix(in srgb, var(--wb-accent) 12%, transparent), transparent 68%);
+  filter: blur(8px);
+}
+
+body.wb-dashboard-page #pageContent.wb-dashboard-layout {
+  --liquid-dashboard-gap: clamp(14px, 1.35vw, 20px);
+  gap: var(--liquid-dashboard-gap) !important;
+}
+
+body.wb-dashboard-page #pageContent.wb-dashboard-layout > .wb-dashlet {
+  border-color: var(--liquid-hairline) !important;
+  border-radius: var(--liquid-radius-lg) !important;
+  box-shadow: var(--liquid-elevation-1), inset 0 1px var(--liquid-specular) !important;
+  transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+
+body.wb-dashboard-page #pageContent.wb-dashboard-layout > .wb-dashlet:is(:hover, :focus-within) {
+  border-color: color-mix(in srgb, var(--wb-dashboard-accent-calm, var(--wb-accent)) 30%, var(--liquid-border)) !important;
+  box-shadow: var(--liquid-elevation-2), inset 0 1px var(--liquid-specular), var(--liquid-glow) !important;
+  transform: translateY(-2px);
+}
+
+body.wb-dashboard-page #pageContent.wb-dashboard-layout > .wb-dashlet[data-wb-dashboard-cockpit] > .wb-dashlet__header {
+  min-height: 42px;
+  margin-bottom: 12px;
+  padding-bottom: 11px;
+  border-bottom-color: var(--liquid-hairline);
+}
+
+body.wb-dashboard-page #pageContent.wb-dashboard-layout > .wb-dashlet[data-wb-dashboard-cockpit] > .wb-dashlet__header :is(h2, h3) {
+  display: block;
+  width: auto;
+  max-width: none;
+  min-width: 0;
+  overflow: visible;
+  color: var(--liquid-text) !important;
+  font-size: 13px;
+  letter-spacing: -.015em;
+  text-overflow: clip;
+  white-space: normal;
+}
+
+body.wb-dashboard-page #pageContent.wb-dashboard-layout > .wb-dashlet[data-wb-dashboard-cockpit='module'] > .wb-dashlet__header {
+  display: flex !important;
+  align-items: center;
+}
+
+body.wb-dashboard-page #pageContent.wb-dashboard-layout > .wb-dashlet[data-wb-dashboard-cockpit='module'] > .wb-dashlet__header :is(h2, h3) {
+  flex: 1 1 auto;
+}
+
+body.wb-dashboard-page #pageContent.wb-dashboard-layout > .wb-dashlet[data-wb-dashboard-cockpit='module'] .wb-module-launcher {
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  min-height: 104px !important;
+  padding: clamp(11px, 1.3cqi, 16px) !important;
+}
+
+body.wb-dashboard-page #pageContent.wb-dashboard-layout > .wb-dashlet[data-wb-dashboard-cockpit='module'] .wb-module-launcher .title {
+  overflow: visible !important;
+  display: -webkit-box;
+  max-width: none !important;
+  color: var(--liquid-text) !important;
+  font-size: clamp(14px, 4.6cqi, 18px) !important;
+  line-height: 1.18 !important;
+  text-overflow: clip !important;
+  white-space: normal !important;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+body.wb-dashboard-page #pageContent.wb-dashboard-layout > .wb-dashlet[data-wb-dashboard-cockpit='module'] .wb-module-launcher__meta {
+  opacity: .78;
+}
+
+body.wb-dashboard-page #pageContent.wb-dashboard-layout > .wb-dashlet[data-wb-dashboard-cockpit='module'] .wb-module-launcher__action {
+  border-color: var(--liquid-hairline) !important;
+  background: linear-gradient(145deg,
+    color-mix(in srgb, var(--liquid-glass-strong) 80%, transparent),
+    color-mix(in srgb, var(--wb-accent) 7%, var(--liquid-glass))) !important;
+  box-shadow: inset 0 1px var(--liquid-specular), 0 8px 20px rgba(3, 7, 24, .12);
+}
+
+body.wb-dashboard-page #pageContent.wb-dashboard-layout > .wb-dashlet[data-wb-dashboard-cockpit='metric'] .wb-dashboard-metric-card {
+  grid-template-rows: auto minmax(var(--wb-metric-chart-min), 1fr) auto;
+  border: 0 !important;
+  border-radius: calc(var(--liquid-radius-lg) - 5px) !important;
+  background: radial-gradient(circle at 92% 4%,
+      color-mix(in srgb, var(--wb-dashlet-accent) 15%, transparent), transparent 34%),
+    linear-gradient(150deg, color-mix(in srgb, var(--liquid-glass-strong) 70%, transparent),
+      color-mix(in srgb, var(--liquid-glass) 84%, transparent)) !important;
+  box-shadow: inset 0 1px var(--liquid-specular) !important;
+}
+
+body.wb-dashboard-page #pageContent.wb-dashboard-layout > .wb-dashlet[data-wb-dashboard-cockpit='metric'] .wb-dashboard-metric-card__label {
+  overflow: visible;
+  color: color-mix(in srgb, var(--liquid-muted) 88%, var(--wb-dashlet-accent)) !important;
+  line-height: 1.25;
+  text-overflow: clip;
+  white-space: normal;
+}
+
+body.wb-dashboard-page #pageContent.wb-dashboard-layout > .wb-dashlet[data-wb-dashboard-cockpit='metric'] .wb-dashboard-metric-card__value {
+  text-shadow: 0 0 28px color-mix(in srgb, var(--wb-dashlet-accent) 18%, transparent);
+}
+
+body.wb-dashboard-page .wb-dashboard-sparkline__area {
+  fill: color-mix(in srgb, var(--wb-dashlet-accent, var(--liquid-cyan)) 17%, transparent);
+}
+
+body.wb-dashboard-page .wb-dashboard-sparkline__line {
+  stroke: color-mix(in srgb, var(--wb-dashlet-accent, var(--liquid-cyan)) 72%, var(--liquid-cyan));
+  stroke-width: 2.4;
+  vector-effect: non-scaling-stroke;
+}
+
+body.wb-dashboard-page .wb-dashboard-sparkline__point {
+  fill: var(--liquid-canvas-deep);
+  stroke: color-mix(in srgb, var(--wb-dashlet-accent, var(--liquid-cyan)) 68%, white);
+  stroke-width: 2.2;
+  vector-effect: non-scaling-stroke;
+}
+
+body.wb-dashboard-page .wb-dashboard-metric-card__trend {
+  display: inline-flex !important;
+  align-self: start !important;
+  align-items: center;
+  justify-content: center;
+  width: fit-content !important;
+  max-width: 100%;
+  height: 26px !important;
+  min-height: 26px !important;
+  max-height: 26px !important;
+  padding: 5px 9px !important;
+  border: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+  border-radius: 999px !important;
+  background: color-mix(in srgb, currentColor 7%, transparent) !important;
+  box-shadow: none !important;
+  line-height: 1 !important;
+}
+
+body.wb-dashboard-page .wb-dashboard-metric-card__toggle {
+  border-radius: 10px !important;
+  background: color-mix(in srgb, var(--liquid-glass-strong) 76%, transparent) !important;
+}
+
+body.wb-list-page .wb-list-command-bar,
+body.wb-form-page #pageForm.wb-modern-form {
+  box-shadow: var(--liquid-elevation-2), inset 0 1px var(--liquid-specular) !important;
+}
+
+body.wb-list-page .wb-data-table > tbody > tr > :where(th, td) {
+  transition: background-color .16s ease, color .16s ease;
+}
+
+body.wb-list-page .wb-data-table > tbody > tr:hover > :where(th, td) {
+  background: color-mix(in srgb, var(--wb-accent) 8%, var(--liquid-glass-strong)) !important;
+}
+
+body.wb-list-page .wb-table-actions :where(a, button, .btn),
+body.wb-app-navigation-enabled .wb-app-navigation__logout {
+  transition: border-color .17s ease, background-color .17s ease, color .17s ease, transform .17s ease;
+}
+
+body.wb-list-page .wb-table-actions :where(a, button, .btn):is(:hover, :focus-visible),
+body.wb-app-navigation-enabled .wb-app-navigation__logout:is(:hover, :focus-visible) {
+  transform: translateY(-1px);
+}
+
+body.wb-form-page #pageForm.wb-modern-form :where(input, select, textarea, .form-control):focus {
+  outline: 0 !important;
+  box-shadow: 0 0 0 4px var(--liquid-focus), inset 0 1px rgba(255, 255, 255, .05) !important;
+}
+
+@media (min-width: 768px) {
+  body.wb-dashboard-page #pageContent.wb-dashboard-layout > .wb-dashlet {
+    animation: liquid-card-arrive .42s cubic-bezier(.2, .72, .28, 1) both;
+  }
+  body.wb-dashboard-page #pageContent.wb-dashboard-layout > .wb-dashlet:nth-of-type(2n) { animation-delay: 35ms; }
+  body.wb-dashboard-page #pageContent.wb-dashboard-layout > .wb-dashlet:nth-of-type(3n) { animation-delay: 70ms; }
+}
+
+@keyframes liquid-card-arrive {
+  from { opacity: 0; transform: translateY(8px) scale(.992); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 767px) {
+  body.wb-dashboard-page #pageContent.wb-dashboard-layout > .wb-dashlet {
+    border-radius: var(--liquid-radius-md) !important;
+  }
+  body.wb-dashboard-page #pageContent.wb-dashboard-layout > .wb-dashlet[data-wb-dashboard-cockpit='module'] .wb-module-launcher {
+    min-height: 84px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.wb-dashboard-page #pageContent.wb-dashboard-layout > .wb-dashlet {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+/*
+ * LIQUID 1.1 premium access, search and dialog system
+ * One interaction language for entry, discovery and interruption.
+ */
+body.wb-login-page {
+  --liquid-auth-border: rgba(154, 166, 244, .22);
+  --liquid-auth-surface: rgba(12, 18, 45, .78);
+  --liquid-auth-field: rgba(6, 11, 31, .62);
+}
+
+.wb-login-card {
+  width: min(100% - 64px, 500px);
+  padding: clamp(30px, 4vw, 44px);
+  border-radius: var(--liquid-radius-hero, 28px) !important;
+  border-color: var(--liquid-auth-border) !important;
+  background:
+    radial-gradient(circle at 100% 0, color-mix(in srgb, var(--wb-accent) 17%, transparent), transparent 15rem),
+    linear-gradient(145deg, rgba(22, 30, 69, .84), var(--liquid-auth-surface)) !important;
+  box-shadow: 0 34px 100px rgba(0, 0, 0, .42), inset 0 1px rgba(255, 255, 255, .1) !important;
+}
+
+.wb-login-card::before {
+  position: absolute;
+  inset: 0;
+  border: 1px solid transparent;
+  border-radius: inherit;
+  background: linear-gradient(145deg, rgba(255, 255, 255, .16), transparent 32%, color-mix(in srgb, var(--wb-accent) 28%, transparent)) border-box;
+  mask: linear-gradient(#000 0 0) padding-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  content: "";
+  pointer-events: none;
+}
+
+.wb-login-form-surface { display: grid; gap: 2px; }
+
+.wb-login-form-surface :where(.form-control, input[type="text"], input[type="email"], input[type="password"]) {
+  min-height: 52px;
+  border-radius: 14px !important;
+  border-color: var(--liquid-auth-border) !important;
+  background: var(--liquid-auth-field) !important;
+  box-shadow: inset 0 1px rgba(255, 255, 255, .045) !important;
+}
+
+.wb-login-form-surface :where(.form-control, input[type="text"], input[type="email"], input[type="password"]):focus {
+  border-color: color-mix(in srgb, var(--wb-accent) 72%, white) !important;
+  background: rgba(7, 12, 34, .86) !important;
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--wb-accent) 18%, transparent), 0 12px 30px rgba(0, 0, 0, .16) !important;
+}
+
+.wb-login-form-surface :where(.wb-login-stay-option, .wb-login-remember-option, .wb-auth-notice, .alert) {
+  color: #dce2fb !important;
+  border: 1px solid var(--liquid-auth-border) !important;
+  border-radius: 14px !important;
+  background: rgba(9, 15, 39, .7) !important;
+}
+
+.wb-login-page .wb-login-card .wb-login-form-surface :is(.wb-login-stay-option, .wb-login-remember-option, .wb-login-password-manager-hint) {
+  color: #dce2fb !important;
+  border-color: var(--liquid-auth-border) !important;
+  background: rgba(9, 15, 39, .7) !important;
+}
+
+.wb-login-page .wb-login-card .wb-login-form-surface .wb-login-password-manager-hint {
+  border-radius: 14px !important;
+}
+
+.wb-login-form-surface :where(.wb-login-stay-option, .wb-login-remember-option) :where(label, small) {
+  color: #dce2fb !important;
+}
+
+.wb-login-page .wb-login-card .wb-login-form-surface :is(.wb-login-stay-option, .wb-login-remember-option, .wb-login-password-manager-hint) :where(label, span, small) {
+  color: #dce2fb !important;
+}
+
+.wb-login-form-surface :where(.wb-login-stay-option, .wb-login-remember-option) small { opacity: .72; }
+
+.wb-login-form-surface input[type="checkbox"] {
+  width: 18px !important;
+  height: 18px !important;
+  flex: 0 0 18px;
+  accent-color: var(--wb-accent);
+}
+
+.wb-login-form-surface .wb-auth-primary,
+.wb-login-form-surface input[type="submit"].wb-auth-primary {
+  min-height: 52px;
+  border-radius: 14px !important;
+  letter-spacing: .01em;
+}
+
+body.wb-app-navigation-enabled #searchform .wb-global-search__field {
+  min-height: 50px;
+  border: 1px solid color-mix(in srgb, var(--wb-accent) 14%, var(--liquid-border)) !important;
+  border-radius: 16px !important;
+  background: linear-gradient(145deg, color-mix(in srgb, var(--liquid-glass-strong) 80%, transparent), color-mix(in srgb, var(--liquid-glass) 90%, transparent)) !important;
+  box-shadow: inset 0 1px rgba(255, 255, 255, .1), 0 10px 30px rgba(19, 24, 56, .07) !important;
+  backdrop-filter: blur(20px) saturate(145%);
+}
+
+body.wb-app-navigation-enabled #searchform .wb-global-search__field:focus-within {
+  border-color: color-mix(in srgb, var(--wb-accent) 58%, var(--liquid-border)) !important;
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--wb-accent) 13%, transparent), var(--liquid-glow) !important;
+}
+
+body.wb-app-navigation-enabled .wb-global-search-results {
+  margin-top: 10px;
+  padding: 10px;
+  overflow: hidden auto;
+  border: 1px solid color-mix(in srgb, var(--wb-accent) 18%, var(--liquid-border)) !important;
+  border-radius: 22px !important;
+  color: var(--liquid-text) !important;
+  background:
+    radial-gradient(circle at 100% 0, color-mix(in srgb, var(--wb-accent) 12%, transparent), transparent 18rem),
+    color-mix(in srgb, var(--liquid-glass-strong) 94%, transparent) !important;
+  box-shadow: 0 28px 80px rgba(7, 11, 32, .24), inset 0 1px rgba(255, 255, 255, .12) !important;
+  backdrop-filter: blur(30px) saturate(155%);
+}
+
+body.wb-app-navigation-enabled .wb-global-search-palette__header {
+  padding: 12px 12px 14px;
+  border-color: var(--liquid-border);
+}
+
+body.wb-app-navigation-enabled .wb-global-search-group { padding: 8px 0; }
+
+body.wb-app-navigation-enabled .wb-global-search-result {
+  min-height: 68px;
+  border-radius: 15px;
+  transition: border-color .16s ease, background-color .16s ease, box-shadow .16s ease, transform .16s ease;
+}
+
+body.wb-app-navigation-enabled :is(.wb-global-search-result:hover, .wb-global-search-result:focus-visible, .wb-global-search-result--active) {
+  border-color: color-mix(in srgb, var(--wb-accent) 32%, var(--liquid-border)) !important;
+  background: linear-gradient(100deg, color-mix(in srgb, var(--wb-accent) 13%, transparent), color-mix(in srgb, var(--liquid-cyan) 5%, transparent)) !important;
+  box-shadow: inset 3px 0 var(--wb-accent), 0 12px 28px color-mix(in srgb, var(--wb-accent) 11%, transparent) !important;
+  transform: translateX(2px);
+}
+
+body.wb-app-navigation-enabled .wb-global-search-result__icon {
+  border-color: color-mix(in srgb, var(--wb-accent) 28%, var(--liquid-border));
+  background: color-mix(in srgb, var(--wb-accent) 11%, var(--liquid-glass));
+  box-shadow: inset 0 1px rgba(255, 255, 255, .1);
+}
+
+body.wb-app-navigation-enabled .wb-dialog { padding: 24px; }
+
+body.wb-app-navigation-enabled :is(.wb-dialog__backdrop, .modal-backdrop) {
+  background: rgba(2, 5, 16, .7) !important;
+  backdrop-filter: blur(10px) saturate(85%);
+}
+
+body.wb-app-navigation-enabled :is(.wb-dialog__surface, .modal-content) {
+  width: min(620px, calc(100vw - 32px));
+  border: 1px solid color-mix(in srgb, var(--wb-accent) 20%, var(--liquid-border)) !important;
+  border-radius: 24px !important;
+  color: var(--liquid-text) !important;
+  background:
+    radial-gradient(circle at 100% 0, color-mix(in srgb, var(--wb-accent) 11%, transparent), transparent 16rem),
+    color-mix(in srgb, var(--liquid-glass-strong) 96%, transparent) !important;
+  box-shadow: 0 34px 100px rgba(2, 5, 16, .38), inset 0 1px rgba(255, 255, 255, .12) !important;
+  backdrop-filter: blur(30px) saturate(150%);
+}
+
+body.wb-app-navigation-enabled :is(.wb-dialog__header, .modal-header) {
+  min-height: 68px;
+  padding: 18px 22px !important;
+  color: var(--liquid-text) !important;
+  border-color: var(--liquid-border) !important;
+  background: transparent !important;
+}
+
+body.wb-app-navigation-enabled :is(.wb-dialog__title, .modal-title) {
+  max-width: calc(100% - 48px);
+  color: var(--liquid-text) !important;
+  font-size: 17px;
+  line-height: 1.4;
+  letter-spacing: -.015em;
+}
+
+body.wb-app-navigation-enabled :is(.wb-dialog__body, .modal-body) {
+  padding: 24px 22px !important;
+  color: var(--liquid-text) !important;
+  background: transparent !important;
+}
+
+body.wb-app-navigation-enabled :is(.wb-dialog__footer, .modal-footer) {
+  min-height: 72px;
+  padding: 13px 22px !important;
+  border-color: var(--liquid-border) !important;
+  background: color-mix(in srgb, var(--liquid-glass) 58%, transparent) !important;
+}
+
+body.wb-app-navigation-enabled :is(.wb-dialog__close, .modal-header .close) {
+  width: 38px;
+  height: 38px;
+  border-color: var(--liquid-border) !important;
+  border-radius: 12px !important;
+  color: var(--liquid-muted) !important;
+  background: color-mix(in srgb, var(--liquid-glass-strong) 70%, transparent) !important;
+}
+
+body.wb-app-navigation-enabled :is(.wb-dialog__close, .modal-header .close):is(:hover, :focus-visible) {
+  color: var(--liquid-text) !important;
+  border-color: color-mix(in srgb, var(--wb-accent) 45%, var(--liquid-border)) !important;
+  background: color-mix(in srgb, var(--wb-accent) 10%, var(--liquid-glass)) !important;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--wb-accent) 14%, transparent);
+}
+
+@media (max-width: 767px) {
+  .wb-login-card {
+    width: min(100% - 28px, 500px);
+    padding: 26px 20px;
+    border-radius: 22px !important;
+  }
+
+  body.wb-app-navigation-enabled .wb-global-search-results {
+    inset-inline: 10px;
+    width: auto;
+    max-height: min(70dvh, 620px);
+    border-radius: 18px !important;
+  }
+
+  body.wb-app-navigation-enabled .wb-dialog { padding: 10px; }
+
+  body.wb-app-navigation-enabled :is(.wb-dialog__surface, .modal-content) {
+    width: min(100%, 620px);
+    border-radius: 20px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.wb-app-navigation-enabled .wb-global-search-result {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+/*
+ * LIQUID 1.1 premium data and input system
+ * Command, filter, data, pagination and editing form one product surface.
+ */
+body.wb-list-page .wb-table-workspace--finalized {
+  border: 1px solid color-mix(in srgb, var(--wb-accent) 12%, var(--liquid-border)) !important;
+  border-radius: 24px !important;
+  background:
+    radial-gradient(circle at 100% 0, color-mix(in srgb, var(--wb-accent) 8%, transparent), transparent 24rem),
+    color-mix(in srgb, var(--liquid-glass) 82%, transparent) !important;
+  box-shadow: var(--liquid-elevation-2), inset 0 1px var(--liquid-specular) !important;
+  backdrop-filter: blur(22px) saturate(145%);
+  overflow: clip;
+}
+
+body.wb-list-page #pageContent > .wb-list-command-bar:has(+ .wb-table-workspace--finalized) {
+  min-height: 74px;
+  margin-bottom: 0 !important;
+  border: 1px solid color-mix(in srgb, var(--wb-accent) 12%, var(--liquid-border)) !important;
+  border-bottom: 0 !important;
+  border-radius: 24px 24px 0 0 !important;
+  background: color-mix(in srgb, var(--liquid-glass-strong) 58%, transparent) !important;
+  box-shadow: var(--liquid-elevation-1), inset 0 1px var(--liquid-specular) !important;
+}
+
+body.wb-list-page #pageContent > .wb-list-command-bar + .wb-table-workspace--finalized {
+  border-top: 1px solid var(--liquid-border) !important;
+  border-radius: 0 0 24px 24px !important;
+}
+
+body.wb-list-page .wb-table-workspace--finalized > .wb-list-command-bar {
+  min-height: 74px;
+  margin: 0 !important;
+  padding: 13px 16px !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--liquid-border) !important;
+  border-radius: 0 !important;
+  background: color-mix(in srgb, var(--liquid-glass-strong) 56%, transparent) !important;
+  box-shadow: none !important;
+}
+
+body.wb-list-page .wb-table-workspace--finalized > .wb-list-command-bar::before {
+  inset: 14px auto 14px 0;
+  border-radius: 0 999px 999px 0;
+  background: var(--wb-accent);
+  opacity: .72;
+}
+
+body.wb-list-page .wb-table-workspace--finalized .wb-list-command-bar__meta {
+  gap: 9px;
+}
+
+body.wb-list-page .wb-table-workspace--finalized :where(.wb-list-result-count, .wb-list-page-size) {
+  border-color: var(--liquid-border) !important;
+  border-radius: 12px !important;
+  color: var(--liquid-muted) !important;
+  background: color-mix(in srgb, var(--liquid-glass-strong) 68%, transparent) !important;
+  box-shadow: inset 0 1px rgba(255, 255, 255, .07);
+}
+
+body.wb-list-page .wb-table-workspace--finalized .wb-list-command-bar__primary {
+  min-height: 44px;
+  border-radius: 13px !important;
+  background: linear-gradient(120deg, var(--wb-action), color-mix(in srgb, var(--wb-action) 72%, var(--liquid-cyan))) !important;
+  box-shadow: 0 12px 28px color-mix(in srgb, var(--wb-action) 24%, transparent), inset 0 1px rgba(255, 255, 255, .25) !important;
+}
+
+body.wb-list-page .wb-table-workspace--finalized :where(.wb-filter-toggle, .wb-filter-reset) {
+  min-height: 44px;
+  border-color: var(--liquid-border) !important;
+  border-radius: 13px !important;
+  color: var(--liquid-text) !important;
+  background: color-mix(in srgb, var(--liquid-glass-strong) 68%, transparent) !important;
+  box-shadow: inset 0 1px rgba(255, 255, 255, .07);
+}
+
+body.wb-list-page .wb-table-workspace--finalized .wb-filter-toggle[aria-expanded="true"] {
+  border-color: color-mix(in srgb, var(--wb-accent) 42%, var(--liquid-border)) !important;
+  color: color-mix(in srgb, var(--liquid-text) 86%, var(--wb-accent)) !important;
+  background: color-mix(in srgb, var(--wb-accent) 10%, var(--liquid-glass-strong)) !important;
+}
+
+body.wb-list-page .wb-table-workspace--finalized > .wb-table-viewport {
+  background: transparent !important;
+  scrollbar-color: color-mix(in srgb, var(--wb-accent) 28%, var(--liquid-border)) transparent;
+}
+
+body.wb-list-page .wb-table-workspace--finalized .wb-data-table {
+  margin: 0 !important;
+  border: 0 !important;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+body.wb-list-page .wb-table-workspace--finalized .wb-data-table > thead > tr:first-child:not([data-workbench-filter-row]) {
+  min-height: 58px !important;
+}
+
+body.wb-list-page .wb-table-workspace--finalized .wb-data-table > thead > tr:first-child:not([data-workbench-filter-row]) > :is(th, td) {
+  height: 58px !important;
+  padding-block: 14px !important;
+  vertical-align: middle;
+  background: color-mix(in srgb, var(--liquid-glass-strong) 62%, transparent) !important;
+}
+
+body.wb-list-page .wb-table-workspace--finalized .wb-data-table > thead > tr[data-workbench-filter-row] {
+  height: auto !important;
+  min-height: 0 !important;
+  background: color-mix(in srgb, var(--liquid-glass) 64%, transparent) !important;
+  box-shadow: inset 0 1px var(--liquid-border), inset 0 -1px var(--liquid-border);
+}
+
+body.wb-list-page .wb-table-workspace--finalized .wb-data-table > thead > tr[data-workbench-filter-row] > :is(th, td) {
+  height: auto !important;
+  padding: 10px 7px !important;
+  vertical-align: middle !important;
+  background: transparent !important;
+}
+
+body.wb-list-page .wb-table-workspace--finalized .wb-data-table > thead > tr[data-workbench-filter-row] :where(input, select, textarea, .form-control, .wb-select__control) {
+  min-height: 40px !important;
+  margin: 0 !important;
+  border-color: var(--liquid-border) !important;
+  border-radius: 11px !important;
+  color: var(--liquid-text) !important;
+  background: color-mix(in srgb, var(--liquid-glass-strong) 76%, transparent) !important;
+  box-shadow: inset 0 1px rgba(255, 255, 255, .05) !important;
+}
+
+body.wb-list-page .wb-table-workspace--finalized .wb-data-table > thead > tr[data-workbench-filter-row] :where(input, select, textarea, .form-control, .wb-select__control):focus {
+  border-color: color-mix(in srgb, var(--wb-accent) 58%, var(--liquid-border)) !important;
+  box-shadow: 0 0 0 3px var(--liquid-focus) !important;
+}
+
+body.wb-list-page .wb-table-workspace--finalized .wb-data-table > tbody > tr > :is(th, td) {
+  min-height: 58px;
+  padding-block: 13px !important;
+  vertical-align: middle;
+  border-color: var(--liquid-border) !important;
+}
+
+body.wb-list-page .wb-table-workspace--finalized .wb-data-table > tbody > tr:focus-within > :is(th, td) {
+  background: color-mix(in srgb, var(--wb-accent) 8%, var(--liquid-glass-strong)) !important;
+}
+
+body.wb-list-page .wb-table-workspace--finalized .wb-table-actions :where(a, button, .btn) {
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  min-height: 38px;
+  border-radius: 11px !important;
+}
+
+body.wb-list-page .wb-table-workspace--finalized .wb-empty-state--table {
+  min-height: clamp(240px, 34vh, 390px) !important;
+  margin: 0 !important;
+  padding: 42px clamp(20px, 6vw, 72px) !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: radial-gradient(circle at 50% 32%, color-mix(in srgb, var(--wb-accent) 8%, transparent), transparent 18rem) !important;
+}
+
+body.wb-list-page .wb-table-workspace--finalized .wb-empty-state--table .wb-empty-state__icon {
+  border-color: color-mix(in srgb, var(--wb-accent) 35%, var(--liquid-border)) !important;
+  background: color-mix(in srgb, var(--wb-accent) 10%, var(--liquid-glass-strong)) !important;
+  box-shadow: 0 10px 30px color-mix(in srgb, var(--wb-accent) 12%, transparent);
+}
+
+body.wb-list-page .wb-table-workspace--finalized > .wb-table-footer,
+body.wb-list-page #pageContent .wb-table-workspace--finalized > .wb-table-footer {
+  min-height: 66px;
+  margin: 0 !important;
+  padding: 12px 16px !important;
+  border: 0 !important;
+  border-top: 1px solid var(--liquid-border) !important;
+  border-radius: 0 !important;
+  background: color-mix(in srgb, var(--liquid-glass-strong) 54%, transparent) !important;
+  box-shadow: none !important;
+}
+
+body.wb-list-page .wb-table-workspace--finalized .wb-list-footer__pagination :where(.pagination, .pager) {
+  gap: 6px;
+}
+
+body.wb-list-page .wb-table-workspace--finalized .wb-list-footer__pagination :where(a, button, span) {
+  min-width: 38px;
+  min-height: 38px;
+  border-radius: 11px !important;
+}
+
+body.wb-form-page #pageForm.wb-modern-form {
+  border-radius: 24px !important;
+  background:
+    radial-gradient(circle at 100% 0, color-mix(in srgb, var(--wb-accent) 7%, transparent), transparent 26rem),
+    color-mix(in srgb, var(--liquid-glass) 80%, transparent) !important;
+  box-shadow: var(--liquid-elevation-2), inset 0 1px var(--liquid-specular) !important;
+}
+
+body.wb-form-page #pageForm.wb-modern-form .content-tab-wrapper > .nav-tabs,
+body.wb-form-page #pageForm.wb-modern-form .wb-form-tabs {
+  padding: 10px 12px !important;
+  gap: 6px;
+  background: color-mix(in srgb, var(--liquid-glass-strong) 54%, transparent) !important;
+}
+
+body.wb-form-page #pageForm.wb-modern-form :where(.nav-tabs, .wb-form-tabs) > li > a {
+  min-height: 42px;
+  border-radius: 12px !important;
+}
+
+body.wb-form-page #pageForm.wb-modern-form :where(.nav-tabs, .wb-form-tabs) > .active > a {
+  box-shadow: inset 0 -2px var(--wb-accent), 0 8px 20px color-mix(in srgb, var(--wb-accent) 10%, transparent) !important;
+}
+
+body.wb-form-page #pageForm.wb-modern-form :where(.wb-form-section, fieldset, .tab-pane) {
+  border-color: var(--liquid-border) !important;
+}
+
+body.wb-form-page #pageForm.wb-modern-form :where(.form-group, .wb-form-row) {
+  border-color: var(--liquid-border) !important;
+  transition: background-color .16s ease, border-color .16s ease;
+}
+
+body.wb-form-page #pageForm.wb-modern-form :where(.form-group, .wb-form-row):focus-within {
+  border-color: color-mix(in srgb, var(--wb-accent) 24%, var(--liquid-border)) !important;
+  background: color-mix(in srgb, var(--wb-accent) 4%, transparent) !important;
+}
+
+body.wb-form-page #pageForm.wb-modern-form :where(input, select, textarea, .form-control, .wb-select__control) {
+  min-height: 44px;
+  border-color: var(--liquid-border) !important;
+  border-radius: 12px !important;
+  color: var(--liquid-text) !important;
+  background: color-mix(in srgb, var(--liquid-glass-strong) 70%, transparent) !important;
+}
+
+body.wb-form-page #pageForm.wb-modern-form textarea { min-height: 112px; }
+
+body.wb-form-page #pageForm.wb-modern-form :where(.help-block, .form-text, .wb-field-help) {
+  color: var(--liquid-muted) !important;
+  line-height: 1.5;
+}
+
+body.wb-form-page #pageForm.wb-modern-form :where(.wb-form-actions, .form-actions, .buttonHolder) {
+  min-height: 70px;
+  padding: 12px 16px !important;
+  background: color-mix(in srgb, var(--liquid-glass-strong) 62%, transparent) !important;
+  box-shadow: 0 -12px 32px rgba(7, 11, 32, .07) !important;
+}
+
+@media (max-width: 767px) {
+  body.wb-list-page .wb-table-workspace--finalized,
+  body.wb-form-page #pageForm.wb-modern-form {
+    border-radius: 19px !important;
+  }
+
+  body.wb-list-page #pageContent > .wb-list-command-bar:has(+ .wb-table-workspace--finalized) {
+    border-radius: 19px 19px 0 0 !important;
+  }
+
+  body.wb-list-page #pageContent > .wb-list-command-bar + .wb-table-workspace--finalized {
+    border-radius: 0 0 19px 19px !important;
+  }
+
+  body.wb-list-page .wb-table-workspace--finalized > .wb-list-command-bar {
+    min-height: 0;
+    padding: 12px !important;
+  }
+
+  body.wb-list-page .wb-table-workspace--finalized .wb-list-command-bar__actions {
+    gap: 8px;
+  }
+
+  body.wb-list-page .wb-table-workspace--finalized .wb-list-command-bar__actions > * {
+    min-width: 0;
+  }
+
+  body.wb-list-page .wb-table-workspace--finalized .wb-data-table > thead > tr[data-workbench-filter-row] {
+    padding: 10px !important;
+  }
+
+  body.wb-list-page .wb-table-workspace--finalized .wb-data-table > thead > tr[data-workbench-filter-row] > :is(th, td) {
+    padding: 6px !important;
+  }
+
+  body.wb-list-page .wb-table-workspace--finalized > .wb-table-footer {
+    min-height: 0;
+    padding: 11px 12px !important;
+  }
+
+  body.wb-form-page #pageForm.wb-modern-form :where(.wb-form-actions, .form-actions, .buttonHolder) {
+    padding: 11px 12px !important;
+  }
+}

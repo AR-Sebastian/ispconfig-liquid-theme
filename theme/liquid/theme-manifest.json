@@ -1,0 +1,51 @@
+﻿{
+    "schemaVersion":  1,
+    "id":  "com.ispconfig.liquid.theme",
+    "name":  "ISPConfig LIQUID",
+    "version":  "1.1.2",
+    "stage":  "stable",
+    "releaseDate":  "2026-07-30",
+    "compatibility":  {
+                          "ispconfig":  "3.3dev",
+                          "preview":  "Ubuntu 24.04 laboratory"
+                      },
+    "packageDirectory":  "liquid",
+    "releaseTag":  "ispconfig-liquid-theme-v1.1.2",
+    "design":  {
+                   "family":  "liquid-glass",
+                   "defaultMode":  "dark",
+                   "defaultAccent":  "#6c63ff",
+                   "secondaryAccent":  "#00d4ff"
+               },
+    "supportedModules":  [
+                             "login",
+                             "dashboard",
+                             "help",
+                             "client",
+                             "sites",
+                             "mail",
+                             "mailuser",
+                             "dns",
+                             "monitor",
+                             "tools",
+                             "admin"
+                         ],
+    "retiredThemeSurfaces":  [
+                                 "openvz",
+                                 "aps-installer",
+                                 "mailman-2",
+                                 "xmpp"
+                             ],
+    "boundaries":  {
+                       "themeOnly":  true,
+                       "coreReimplementation":  false,
+                       "productionDeploymentApproved":  false,
+                       "nextThemeDependency":  false
+                   },
+    "distributionMode":  "standalone-theme",
+    "optionalIntegration":  {
+                                "Name":  "ISPConfig Workbench branding",
+                                "Required":  false,
+                                "BehaviorWithoutIntegration":  "Theme-local ISPConfig logo, favicon and violet accent defaults"
+                            }
+}
