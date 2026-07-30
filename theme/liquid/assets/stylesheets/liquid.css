@@ -788,6 +788,35 @@ body > :where(.dropdown-menu, .wb-select__panel, .wb-owned-enhanced-select__pane
   }
 }
 
+/* V1.3: the fixed navigation footer remains a dark product surface even when
+ * a long form switches document-level appearance tokens during capture or
+ * theme synchronization. Keep the icon contrast independent from page cards. */
+body.wb-app-navigation-enabled .wb-app-navigation__footer .wb-app-navigation__logout {
+  color: #d7deeb !important;
+  border-color: rgba(158, 171, 192, .28) !important;
+  background: #111a35 !important;
+}
+
+body.wb-app-navigation-enabled .wb-app-navigation__footer .wb-app-navigation__logout svg {
+  color: #d7deeb !important;
+  fill: none !important;
+  stroke: #d7deeb !important;
+}
+
+body.wb-app-navigation-enabled .wb-app-navigation__footer .wb-app-navigation__logout:is(:hover, :focus-visible) {
+  color: #ffffff !important;
+  border-color: color-mix(in srgb, var(--wb-accent) 54%, rgba(255, 255, 255, .24)) !important;
+  background: color-mix(in srgb, var(--wb-accent) 18%, rgba(255, 255, 255, .055)) !important;
+}
+
+@media (forced-colors: active) {
+  body.wb-app-navigation-enabled .wb-app-navigation__footer .wb-app-navigation__logout {
+    color: ButtonText !important;
+    border-color: ButtonText !important;
+    background: ButtonFace !important;
+  }
+}
+
 /* LIQUID 1.1 premium operations and commerce system
  * One calm visual language for navigation, operational state, monitoring,
  * extensions and the optional billing product. Business behavior stays owned
@@ -876,6 +905,22 @@ body.wb-app-navigation-enabled .wb-mobile-navigation__secondary-link {
   padding-inline: 12px !important;
   color: #45536e !important;
   border-radius: 10px !important;
+}
+
+html[data-wb-theme="light"] body.wb-app-navigation-enabled :is(
+  .wb-mobile-navigation__secondary-link[aria-current="page"],
+  .wb-mobile-navigation__secondary-link.active
+) {
+  color: #111a35 !important;
+  background: #e5e7ff !important;
+}
+
+html[data-wb-theme="dark"] body.wb-app-navigation-enabled :is(
+  .wb-mobile-navigation__secondary-link[aria-current="page"],
+  .wb-mobile-navigation__secondary-link.active
+) {
+  color: #ffffff !important;
+  background: #222b52 !important;
 }
 
 body.wb-app-navigation-enabled .wb-mobile-navigation__secondary-row {
