@@ -1,55 +1,141 @@
 # ISPConfig Theme LIQUID
 
-LIQUID is a dark-first liquid-glass interface theme for ISPConfig. It combines a focused administration layout with layered surfaces, subtle depth, luminous status cues and a responsive component system.
+## Deutsch
+
+LIQUID ist ein Dark-First-Liquid-Glass-Theme für ISPConfig. Es verbindet eine
+konzentrierte Administrationsoberfläche mit geschichteten Flächen, dezenter
+Tiefe, leuchtenden Statushinweisen und einem responsiven Komponentensystem.
+
+![LIQUID-Dashboard aus dem installierten Paket v1.1.2](docs/images/dashboard-runtime-v1.1.2.png)
+
+Die Abbildung ist eine echte Laufzeitaufnahme des veröffentlichten Pakets
+`v1.1.2` auf Ubuntu 24.04 mit Nginx. Sie ist kein Konzept-Rendering.
+
+### Warum LIQUID entstanden ist
+
+Komplexe Infrastruktur muss nicht technisch zerklüftet wirken. LIQUID verfolgt
+eine eigenständige, hochwertige Designsprache, ohne Lesbarkeit oder
+Betriebssicherheit den Effekten unterzuordnen. Glaseffekte bleiben auf
+strukturelle Flächen begrenzt; Daten, Warnungen, Formulare und Aktionen behalten
+klare Kontraste und vorhersehbares Verhalten.
+
+### Verbesserungen
+
+- Einheitliche Hierarchie in den unterstützten Modulen
+- Dark-First-Oberfläche mit abgestimmtem hellen Farbschema
+- Klare Navigation, Statusdarstellung und Schnellaktionen
+- Einheitliche Tabellen, Filter, Formulare, Dialoge und Seitennavigation
+- Responsive Darstellung für Desktop, Tablet und Smartphone
+- Zurückhaltende Bewegung und Tiefe mit Reduced-Motion-Unterstützung
+- Konfigurierbares Branding und Akzentfarben
+- Getrennte Farben für Erfolg, Warnung und Gefahr
+- Eigenständiges Theme-Paket ohne Änderung des ISPConfig-Kerns
+
+### Aktueller Status und Kompatibilität
+
+`v1.1.2` ist eine öffentliche Test- und Evaluierungsversion:
+
+- ISPConfig 3.3-Entwicklungsstand (`3.3dev`)
+- PHP 8.1 oder neuer
+- Aktuelle Desktop- und Mobilbrowser
+- Keine Freigabe für den Produktiveinsatz
+
+Eine Kompatibilität mit ISPConfig 3.3.1p1 wird erst mit `v1.1.3` zugesichert,
+wenn die vollständige Stable-Matrix sowie Admin-, Reseller-, Kunden- und
+Mailuser-Ansichten erfolgreich geprüft wurden.
+
+### Installation und Projektinformationen
+
+- [Installation auf Deutsch](docs/INSTALLATION-DE.md)
+- [Kompatibilität und Prüfbereich](docs/COMPATIBILITY.md)
+- [Freigabekriterien für Version 1.1.3](docs/RELEASE-GATE-1.1.3.md)
+- [Branding-Anleitung](docs/BRANDING-DE.md)
+- [Änderungsprotokoll](CHANGELOG.md)
+- [Sicherheitsrichtlinie](SECURITY.md)
+- [Mitwirken](CONTRIBUTING.md)
+
+### Lizenz
+
+LIQUID ist unter der
+[PolyForm Free Trial License 1.0.0](LICENSE.md) source-available. Das Theme darf
+weniger als 32 aufeinanderfolgende Kalendertage evaluiert werden.
+Produktive Nutzung, fortgesetzte Nutzung nach dem Testzeitraum, Managed Hosting
+und andere kommerzielle Nutzung benötigen eine separate kommerzielle Lizenz.
+Die Testlizenz erlaubt keine Weiterverteilung.
+
+Von ISPConfig abgeleitete Bestandteile behalten ihre ursprünglichen
+BSD-3-Clause-Hinweise in den
+[Hinweisen zu Drittbestandteilen](THIRD_PARTY_NOTICES.md).
+
+ISPConfig und die zugehörigen Marken gehören ihren jeweiligen Inhabern. Dieses
+unabhängige Projekt ist weder mit ISPConfig verbunden noch von ISPConfig
+offiziell empfohlen.
+
+---
+
+## English
+
+LIQUID is a dark-first liquid-glass theme for ISPConfig. It combines a focused
+administration layout with layered surfaces, subtle depth, luminous status
+cues and a responsive component system.
 
 ![LIQUID dashboard from the installed v1.1.2 package](docs/images/dashboard-runtime-v1.1.2.png)
 
-Actual runtime capture of the published v1.1.2 package on Ubuntu 24.04 with Nginx. This is not a concept rendering.
+The image is an actual runtime capture of the published `v1.1.2` package on
+Ubuntu 24.04 with Nginx. It is not a concept rendering.
 
-## Why LIQUID was created
+### Why LIQUID was created
 
-Modern infrastructure products can present complex information without feeling technical or fragmented. LIQUID explores that direction for ISPConfig: a visually distinctive interface that still keeps hierarchy, legibility and operational safety ahead of effects.
+Complex infrastructure does not need to feel technically fragmented. LIQUID
+uses a distinctive premium design language without placing effects above
+legibility or operational safety. Glass effects remain limited to structural
+surfaces; data, warnings, forms and actions retain clear contrast and
+predictable behavior.
 
-The theme shares the same goal as NEXT—a coherent replacement for inconsistent legacy presentation—but offers a stronger visual identity. Glass effects are deliberately limited to structural surfaces. Data, warnings, forms and actions retain clear contrast and predictable behavior.
+### Improvements
 
-## What is improved
-
-- A consistent visual hierarchy across all supported modules
-- Dark-first surfaces with a coordinated light scheme
+- Consistent hierarchy across supported modules
+- Dark-first interface with a coordinated light scheme
 - Clear navigation, status presentation and quick actions
 - Unified tables, filters, forms, dialogs and pagination
 - Responsive layouts for desktop, tablet and mobile
 - Restrained motion and depth with reduced-motion support
 - Configurable branding and accent colors
 - Distinct semantic colors for success, warning and danger
-- A standalone theme package without ISPConfig core modifications
+- Standalone theme package without ISPConfig core modifications
 
-## Compatibility
+### Current status and compatibility
 
-- ISPConfig 3.3 development line
+`v1.1.2` is a public test and evaluation release:
+
+- ISPConfig 3.3 development line (`3.3dev`)
 - PHP 8.1 or newer
 - Current desktop and mobile browsers
+- Not approved for production deployment
 
-Test the theme on a staging system before using it in production.
+Compatibility with ISPConfig 3.3.1p1 will be claimed only in `v1.1.3`, after
+the complete stable matrix and administrator, reseller, customer and mail-user
+views have passed validation.
 
-## Installation
+### Installation and project information
 
-- [Deutsch](docs/INSTALLATION-DE.md)
-- [English](docs/INSTALLATION-EN.md)
-
-## Project information
-
+- [Installation in English](docs/INSTALLATION-EN.md)
+- [Compatibility and validation scope](docs/COMPATIBILITY.md)
+- [Version 1.1.3 release gate](docs/RELEASE-GATE-1.1.3.md)
 - [Changelog](CHANGELOG.md)
-- [Compatibility and validation](docs/COMPATIBILITY.md)
-- [Branding guide](docs/BRANDING-DE.md)
-- [Release process](docs/RELEASE-PROCESS.md)
 - [Security policy](SECURITY.md)
 - [Contributing](CONTRIBUTING.md)
 
-## Licensing
+### License
 
-LIQUID is source-available under the [PolyForm Free Trial License 1.0.0](LICENSE.md). It may be evaluated for less than 32 consecutive calendar days. Production use, continued use after the trial, managed hosting and other commercial use require a separate commercial license. Redistribution is not permitted by the trial license.
+LIQUID is source-available under the
+[PolyForm Free Trial License 1.0.0](LICENSE.md). The theme may be evaluated for
+less than 32 consecutive calendar days. Production use, continued use after
+the trial, managed hosting and other commercial use require a separate
+commercial license. Redistribution is not permitted by the trial license.
 
-Parts derived from ISPConfig retain their original BSD 3-Clause notices in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). See [commercial licensing](COMMERCIAL-LICENSING.md) for the practical distinction.
+Parts derived from ISPConfig retain their original BSD 3-Clause notices in
+[Third-party notices](THIRD_PARTY_NOTICES.md).
 
-ISPConfig and its trademarks belong to their respective owners. This independent project is not affiliated with or endorsed by ISPConfig.
+ISPConfig and its trademarks belong to their respective owners. This
+independent project is not affiliated with or endorsed by ISPConfig.

@@ -3,14 +3,14 @@
     "id":  "com.ispconfig.liquid.theme",
     "name":  "ISPConfig LIQUID",
     "version":  "1.1.2",
-    "stage":  "stable",
+    "stage":  "evaluation",
     "releaseDate":  "2026-07-30",
     "compatibility":  {
                           "ispconfig":  "3.3dev",
-                          "preview":  "Ubuntu 24.04 laboratory"
+                          "preview":  "Development-line evaluation only; stable 3.3.1p1 validation pending"
                       },
     "packageDirectory":  "liquid",
-    "releaseTag":  "ispconfig-liquid-theme-v1.1.2",
+    "releaseTag":  "v1.1.2",
     "design":  {
                    "family":  "liquid-glass",
                    "defaultMode":  "dark",
