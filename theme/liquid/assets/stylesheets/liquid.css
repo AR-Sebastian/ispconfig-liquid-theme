@@ -788,6 +788,42 @@ body > :where(.dropdown-menu, .wb-select__panel, .wb-owned-enhanced-select__pane
   }
 }
 
+/* WP-1137: LIQUID owns one dark mobile-navigation surface.
+ *
+ * The page-level light/dark preference may change content cards, but it must
+ * never turn the LIQUID product drawer into a bright fallback panel.
+ */
+body.wb-app-navigation-enabled .wb-mobile-navigation,
+body.wb-app-navigation-enabled .wb-mobile-navigation__content {
+  color-scheme: dark;
+  color: #d7e0f0 !important;
+  background:
+    radial-gradient(circle at 18% 0, color-mix(in srgb, var(--wb-accent) 13%, transparent), transparent 19rem),
+    linear-gradient(180deg, #111933, #080e22) !important;
+}
+
+body.wb-app-navigation-enabled .wb-mobile-navigation__content strong,
+body.wb-app-navigation-enabled .wb-mobile-navigation__module,
+body.wb-app-navigation-enabled .wb-mobile-navigation__secondary-link {
+  color: #c5d0e4 !important;
+}
+
+body.wb-app-navigation-enabled .wb-mobile-navigation :is(
+  .wb-mobile-navigation__module,
+  .wb-mobile-navigation__secondary-link
+):is(.active, [aria-current='page']) {
+  color: #fff !important;
+}
+
+body.wb-app-navigation-enabled .wb-mobile-navigation__secondary {
+  background: rgba(3, 7, 22, .34) !important;
+}
+
+body.wb-app-navigation-enabled .wb-mobile-navigation + .wb-app-navigation__footer,
+body.wb-app-navigation-enabled .wb-mobile-navigation .wb-app-navigation__footer {
+  color-scheme: dark;
+}
+
 /* V1.3: the fixed navigation footer remains a dark product surface even when
  * a long form switches document-level appearance tokens during capture or
  * theme synchronization. Keep the icon contrast independent from page cards. */
