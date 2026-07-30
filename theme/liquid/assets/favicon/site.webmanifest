@@ -1,6 +1,6 @@
 {
-  "name": "ISPConfig Workbench",
-  "short_name": "Workbench",
+  "name": "ISPConfig LIQUID",
+  "short_name": "LIQUID",
   "icons": [
     {
       "src": "/themes/liquid/assets/images/ispconfig-workbench-favicon.svg",
@@ -8,7 +8,7 @@
       "type": "image/svg+xml"
     }
   ],
-  "theme_color": "#cc151c",
-  "background_color": "#f8fafc",
+  "theme_color": "#6c63ff",
+  "background_color": "#070b19",
   "display": "standalone"
 }

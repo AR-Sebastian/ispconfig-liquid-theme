@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+## 1.2.2 - 2026-07-30
+
+- Removed private Workbench and laboratory wording from the public product.
+- Completed German and English login, helper, accessibility and system-settings copy.
+- Synchronized the document language and table/filter runtime catalogue.
+- Removed an unconditional two-factor claim from the login presentation.
+- Added release guards for public identity, localization and documentation.
+- Rebuilt and verified all 301 packaged files with SHA-256 checksums.
+- Passed administrator, reseller, customer and mail-user isolation on Apache and Nginx.
+
 ## 1.2.1 - 2026-07-30
 
 - Added a standalone locale resolver based on existing translated ISPConfig
@@ -9,7 +19,7 @@
 - Unified German and English runtime copy across dashboard states, table
   counts, filters, pagination, forms and accessible theme controls.
 - Preserved the independent dark-first glass presentation.
-- Rebuilt and verified the standalone package with 301 signed files.
+- Rebuilt and verified the standalone package with SHA-256 checksums for all 301 files.
 - Passed functional parity, package, neutrality, offline installation,
   upgrade and rollback validation.
 
@@ -24,7 +34,7 @@
   behavior, theme switching and branding feedback.
 - Preserved the independent dark-first glass presentation without a NEXT runtime
   dependency.
-- Verified the standalone package with 301 signed files.
+- Verified the standalone package with SHA-256 checksums for all 301 files.
 - Passed fresh installation, upgrade, backup and rollback validation.
 - Strengthened repository validation for version, tag, stage and ISPConfig
   compatibility consistency.
