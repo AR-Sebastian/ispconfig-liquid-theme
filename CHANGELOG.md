@@ -4,6 +4,11 @@
 
 - Tightened dashboard summary and 1×1 widget density.
 - Reduced oversized decorative dashboard space while preserving glass depth.
+- Kept the complete dashboard hero visible in both light and dark modes.
+- Restored complete localized dashboard module names instead of ISPConfig's
+  server-truncated launcher labels.
+- Routed direct dashboard navigation through the same resilient content
+  lifecycle as every other module.
 - Corrected packaged README and installation references to the current release.
 
 ## 1.1.3 - 2026-07-30

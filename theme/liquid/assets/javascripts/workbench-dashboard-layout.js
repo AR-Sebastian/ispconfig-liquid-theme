@@ -380,6 +380,19 @@
       .trim();
   }
 
+  function standardModuleTitle(moduleName) {
+    var labels = language() === 'de' ? {
+      dashboard: '\u00dcbersicht', help: 'Support', client: 'Kunden', sites: 'Webseiten',
+      billing: 'Fakturierung', mail: 'E-Mail', dns: 'DNS', monitor: '\u00dcberwachung',
+      tools: 'Einstellungen', admin: 'System'
+    } : {
+      dashboard: 'Overview', help: 'Support', client: 'Clients', sites: 'Sites',
+      billing: 'Billing', mail: 'Email', dns: 'DNS', monitor: 'Monitoring',
+      tools: 'Settings', admin: 'System'
+    };
+    return labels[String(moduleName || '').trim().toLowerCase()] || '';
+  }
+
   function splitModuleDashlet(host) {
     var source = host.querySelector(':scope > .wb-dashlet[data-wb-dashlet="modules"]');
     if (!source || source.dataset.wbAtomicSplit === 'true') return;
@@ -414,13 +427,13 @@
         return String(candidateModule).trim().toLowerCase() === normalizedModuleName;
       }).map(function (candidate) {
         var candidateTitle = candidate.querySelector('.title, .wb-source-navigation__label, .wb-app-navigation__label');
-        return candidateTitle ? candidateTitle.textContent.replace(/\s+/g, ' ').trim() : '';
+        return (candidateTitle ? candidateTitle.textContent : candidate.getAttribute('aria-label') || candidate.textContent || '').replace(/\s+/g, ' ').trim();
       }).filter(Boolean);
       if (title) {
         var titleStem = moduleTitleStem(title);
         var prefixNavigationTitles = navigationItems.map(function (candidate) {
           var candidateTitle = candidate.querySelector('.title, .wb-source-navigation__label, .wb-app-navigation__label');
-          return candidateTitle ? candidateTitle.textContent.replace(/\s+/g, ' ').trim() : '';
+          return (candidateTitle ? candidateTitle.textContent : candidate.getAttribute('aria-label') || candidate.textContent || '').replace(/\s+/g, ' ').trim();
         }).filter(function (candidateTitle) {
           return titleStem.length >= 4 && moduleTitleStem(candidateTitle).indexOf(titleStem) === 0;
         });
@@ -428,7 +441,7 @@
       }
       var completeTitle = matchingNavigationTitles.sort(function (left, right) {
         return moduleDisplayTitle(right).length - moduleDisplayTitle(left).length;
-      }).map(moduleDisplayTitle)[0] || '';
+      }).map(moduleDisplayTitle)[0] || standardModuleTitle(normalizedModuleName);
       if (completeTitle) {
         var shortenedTitle = title;
         title = completeTitle;

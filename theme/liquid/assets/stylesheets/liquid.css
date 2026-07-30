@@ -330,6 +330,11 @@ body.wb-dashboard-page #pageContent.wb-dashboard-layout > .wb-dashboard-hero::af
   pointer-events: none;
 }
 
+body.wb-dashboard-page #pageContent.wb-dashboard-layout > .wb-dashboard-hero > * {
+  position: relative;
+  z-index: 1;
+}
+
 body.wb-dashboard-page #pageContent.wb-dashboard-layout > .wb-dashboard-hero,
 body.wb-dashboard-page #pageContent.wb-dashboard-layout > .wb-dashboard-hero :where(h1, h2, h3, p, small) {
   color: #f4f6ff !important;
@@ -1286,7 +1291,7 @@ body.wb-dashboard-page #pageContent.wb-dashboard-layout > .wb-dashlet[data-wb-da
   border-bottom-color: var(--liquid-hairline);
 }
 
-body.wb-dashboard-page #pageContent.wb-dashboard-layout > .wb-dashlet[data-wb-dashboard-cockpit] > .wb-dashlet__header :is(h2, h3) {
+body.wb-dashboard-page #pageContent.wb-dashboard-layout > .wb-dashlet[data-wb-dashboard-cockpit] > .wb-dashlet__header :is(h2, h3, h4, header) {
   display: block;
   width: auto;
   max-width: none;
@@ -1304,7 +1309,7 @@ body.wb-dashboard-page #pageContent.wb-dashboard-layout > .wb-dashlet[data-wb-da
   align-items: center;
 }
 
-body.wb-dashboard-page #pageContent.wb-dashboard-layout > .wb-dashlet[data-wb-dashboard-cockpit='module'] > .wb-dashlet__header :is(h2, h3) {
+body.wb-dashboard-page #pageContent.wb-dashboard-layout > .wb-dashlet[data-wb-dashboard-cockpit='module'] > .wb-dashlet__header :is(h2, h3, h4, header) {
   flex: 1 1 auto;
 }
 
