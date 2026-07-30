@@ -2,7 +2,9 @@
 
 LIQUID is a dark-first liquid-glass interface theme for ISPConfig. It combines a focused administration layout with layered surfaces, subtle depth, luminous status cues and a responsive component system.
 
-Current runtime screenshots will be added after the published package has completed the full Apache and Nginx validation matrix.
+![LIQUID dashboard from the installed v1.1.2 package](docs/images/dashboard-runtime-v1.1.2.png)
+
+Actual runtime capture of the published v1.1.2 package on Ubuntu 24.04 with Nginx. This is not a concept rendering.
 
 ## Why LIQUID was created
 
