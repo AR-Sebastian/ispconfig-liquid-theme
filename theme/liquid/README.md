@@ -1,4 +1,4 @@
-# ISPConfig Theme LIQUID 1.1.2
+# ISPConfig Theme LIQUID 1.1.3
 
 LIQUID is a dark-first liquid-glass interface theme for ISPConfig.
 
