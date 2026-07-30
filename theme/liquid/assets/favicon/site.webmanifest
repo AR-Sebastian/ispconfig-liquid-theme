@@ -1,6 +1,6 @@
 {
-  "name": "ISPConfig LIQUID",
-  "short_name": "LIQUID",
+  "name": "ISPConfig Workbench",
+  "short_name": "Workbench",
   "icons": [
     {
       "src": "/themes/liquid/assets/images/ispconfig-workbench-favicon.svg",
